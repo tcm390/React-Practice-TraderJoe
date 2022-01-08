@@ -34,4 +34,20 @@
         100% { transform: translateY(0); }
     }
   }
+  @media screen and (max-width: 992px) {
+    
+    .info {
+      padding: -10px 0px;
+      div{
+        font-size: 10px;
+          width: 125%;
+        
+        
+      }
+      
+    }
+    
+  }
+  
+  
   

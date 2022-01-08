@@ -1,6 +1,6 @@
 .navbar {
     width: 100%;
-    
+   
     color: white;
     font-size: 14px;
     position: fixed;
@@ -13,6 +13,7 @@
       background-color: rgba(49, 47, 48, 0.801);
     }
     .container{
+      
       padding: 10px 50px;
       display: flex;
       align-items: center;
@@ -80,6 +81,16 @@
       }
       
     }
+}
+@media screen and (max-width: 992px) {
+  .navbar{
+    .container{
+      transform: scale(0.8);
+      padding: 0px 0px;
+    }
+  }
+  
+  
 }
 
 
