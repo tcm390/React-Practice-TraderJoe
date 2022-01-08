@@ -32,27 +32,14 @@
         z-index: 100;
         img{
             transform: scale(1.5);
-            // display: none;
-            // filter: blur(2px);
-            // -webkit-filter: blur(2px);
-            
-            // background-image: linear-gradient(rgb(116, 113, 113),rgb(247, 245, 245) );
-            
-            
         }
-        // .name{
-        //     display: block;
-        //     position: absolute;
-        //     bottom: 0;
-        //     z-index: 1000;
-            
-        // }
-        // .des{
-        //     display: block;
-        //     position: absolute;
-        //     z-index: 1000;
-        //     color: white;
-            
-        // }
     }
 }
+@media screen and (max-width: 992px) {
+    .winnerCardContainer{
+      width: 25%;
+      // margin-bottom: 50px;
+    }
+    
+  }
+  

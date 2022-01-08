@@ -23,7 +23,7 @@ class CategoryMenu extends React.Component {
         return (
             <div>
                 <div className="uisegment">
-                    <div className="ui container">
+                    <div style={{ overflow: 'auto' }} className="ui container">
                         <div className="ui tabular white menu compact" >
                             <a className={`item ${'All' === this.props.currentMainCategory ? 'active' : ''}`} onClick={() => { this.props.setCurrentMainCategory('All'); }}>
                                 All
@@ -61,7 +61,7 @@ class CategoryMenu extends React.Component {
                                     })}
                                 </div>
                             </li>
-                            <li className="selectedWrapper">
+                            <li style={{ overflow: 'auto' }} className="selectedWrapper">
                                 <div>
                                     <label className="optionLabel">Sort by</label>
                                 </div>

@@ -87,7 +87,7 @@ class ProductModal extends React.Component {
                     }
                 });
 
-            this.setState({ commentList: data.product[0].comments });
+            this.setState({ commentList: data.productComment[0].comments });
 
 
         };
@@ -128,7 +128,9 @@ class ProductModal extends React.Component {
                                 />
                                 <div className="rightSubDes">
                                     <i className="star yellow big icon" />
-                                    <div className="left">{this.props.currentSelectedProduct.RatingScore / this.props.currentSelectedProduct.RatingUser}</div>
+                                    <div className="left">
+                                        {(Math.round((this.props.currentSelectedProduct.RatingScore / this.props.currentSelectedProduct.RatingUser * 1) * 10) / 10) * 2}
+                                    </div>
                                     <div className="right">/10</div>
 
                                 </div>
@@ -145,7 +147,7 @@ class ProductModal extends React.Component {
                             <div className="profileDescription">
                                 {this.props.currentSelectedProduct.Description}
                             </div>
-                            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
                         </div>
 
                         <div className="comment">
@@ -167,8 +169,11 @@ class ProductModal extends React.Component {
                                     )}
 
                             </form>
-
                             <div style={{ marginTop: '40px' }}>
+                                Comments({this.state.commentList.length})
+                                <hr />
+                            </div>
+                            <div >
                                 {this.state.commentList.map((comment) => {
                                     return (
                                         <div key={comment.id} class="ui  comments">

@@ -23,7 +23,7 @@ class ProductCard extends React.Component {
     }
     render() {
         return (
-            <div style={{ width: '23%' }}>
+            <div className="cardContainer" >
                 <div style={{ overflow: 'hidden' }} class="ui card">
                     <div class="image" onClick={this.commentProduct}>
                         <img
@@ -41,8 +41,19 @@ class ProductCard extends React.Component {
                         <div style={{ flex: '4' }} class="header">{this.props.product.Title}</div>
                         <div style={{ flex: '1' }} className="subDes">
                             <div className="leftSubDes">
-                                <div className="left">{this.props.product.RatingScore / this.props.product.RatingUser}</div>
-                                <div className="right">/10</div>
+                                <div className="left">
+                                    {(Math.round((this.props.product.RatingScore / this.props.product.RatingUser * 1) * 10) / 10) * 2}
+
+                                </div>
+                                <div className="right">
+                                    <div className="rightLeft">
+                                        /10
+                                    </div>
+                                    <div className="rightRight">
+
+                                        ({this.props.product.RatingUser} {this.props.product.RatingUser <= 1 ? ('rating') : ('ratings')})
+                                    </div>
+                                </div>
 
                             </div>
                             <div className="rightSubDes">$ {this.props.product.Price}</div>

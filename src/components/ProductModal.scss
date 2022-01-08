@@ -109,3 +109,10 @@
   // background-color: rgb(0, 17, 255);
   
 } 
+@media screen and (max-width: 992px) {
+  .mymodal {
+    flex-direction: column;
+  }
+  
+}
+

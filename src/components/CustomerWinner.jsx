@@ -9,7 +9,7 @@ const CustomerWinner = () => {
             {/* <h1 className="listTitle">
                 Annual Customer Choice Awards Winners
             </h1> */}
-            <div className="customerWinnerList">
+            <div style={{ overflow: 'auto' }} className="customerWinnerList">
                 {customerWinnerData.map(winner =>
                     (
                         <CustomerWinnerCard winner={winner}>123</CustomerWinnerCard>
