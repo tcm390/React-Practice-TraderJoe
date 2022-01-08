@@ -4,9 +4,16 @@
 }
 
 @media screen and (max-width: 992px) {
+    .selectedWrapper{
+        // 
+        div{
+            width:auto;
+            height:100px;
+        }
+    }
     .buttonWrapper{
-    height:100px;
-      display: flex;
+        height:100px;
+        display: flex;
     }
     
 }
