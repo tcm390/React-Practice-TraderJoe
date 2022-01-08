@@ -13,7 +13,7 @@
       width: 50%;
       position: absolute;
       bottom: 10vh;
-      margin-left: 25%;
+      margin-left: 20%;
       color: white;
       text-align: center;
       .bounceArrow{
@@ -37,12 +37,10 @@
   @media screen and (max-width: 992px) {
     
     .info {
-      padding: -10px 0px;
+      // padding: -10px 0px;
       div{
-        font-size: 10px;
-          width: 125%;
-        
-        
+        font-size: 12px;
+        width: 125%;
       }
       
     }
