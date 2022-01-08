@@ -61,7 +61,7 @@ class CategoryMenu extends React.Component {
                                     })}
                                 </div>
                             </li>
-                            <li style={{ overflow: 'auto' }} className="selectedWrapper">
+                            <li className="selectedWrapper">
                                 <div>
                                     <label className="optionLabel">Sort by</label>
                                 </div>

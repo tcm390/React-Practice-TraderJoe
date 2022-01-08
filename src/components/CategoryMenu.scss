@@ -2,3 +2,11 @@
 .buttonWrapper{
     width:80%;
 }
+
+@media screen and (max-width: 992px) {
+    .buttonWrapper{
+    height:100px;
+      display: flex;
+    }
+    
+}
