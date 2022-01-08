@@ -12,8 +12,8 @@
     .info {
       width: 50%;
       position: absolute;
+      transform: translate(50%, 0%);
       bottom: 10vh;
-      margin-left: 20%;
       color: white;
       text-align: center;
       .bounceArrow{
@@ -39,6 +39,7 @@
     .info {
       // padding: -10px 0px;
       div{
+        
         font-size: 12px;
         width: 125%;
       }
