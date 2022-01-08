@@ -1,0 +1,120 @@
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import './Header.scss';
+// import Login from './Login';
+
+import HomePageImg from '../img/HomepageImg.png';
+
+
+
+class Header extends React.Component {
+
+    logout = () => {
+        window.open("http://localhost:5000/auth/logout", "_self");
+    };
+    constructor() {
+        super();
+        this.state = { isScrolled: false };
+    }
+
+
+    render() {
+        // console.log('123');
+        const google = () => {
+            window.open("http://localhost:5000/auth/google", "_self");
+        };
+
+        const github = () => {
+            window.open("http://localhost:5000/auth/github", "_self");
+        };
+
+        const facebook = () => {
+            window.open("http://localhost:5000/auth/facebook", "_self");
+        };
+
+        window.onscroll = () => {
+            const scroll = window.pageYOffset === 0 ? false : true;
+            this.setState({ isScrolled: scroll });
+            return () => (window.onscroll = null);
+        }
+        return (
+            <div className={this.state.isScrolled ? "navbar scrolled" : "navbar"}>
+                <div className="container">
+                    <div className="left">
+                        <Link to='/'>
+                            <img
+                                style={{ marginRight: "120px" }}
+                                src={HomePageImg}
+                                alt=""
+                            />
+                        </Link>
+
+
+                    </div>
+                    <div className="right" >
+                        {this.props.currentUser ? (
+                            <div className="sinInRightNav">
+                                <i className="shopping cart big icon"></i>
+                                <img
+                                    src={this.props.currentUser.photos[0].value}
+                                    alt=""
+                                />
+                                {this.props.currentUser.displayName ? (<div>{this.props.currentUser.displayName}</div>) : (<div>{this.props.currentUser.username}</div>)}
+
+                                <div className="profile">
+                                    <div style={{ backgroundColor: 'rgba(0,0,0,0)', borderRadius: '10px', color: 'white' }} className="ui animated black big fade button" tabIndex="0" onClick={this.logout}>
+                                        <div className="visible content"><i className="sign-out icon" /></div>
+                                        <div className="hidden content">
+                                            Sig Out
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        ) :
+                            (
+                                <div>
+                                    <div className="loginProfile">
+                                        <div style={{ cursor: 'none', backgroundColor: 'rgba(0,0,0,0)', borderRadius: '10px', color: 'white' }} className="ui animated  black big fade button" tabIndex="0">
+                                            <div className="visible content"><i className="sign-in icon" /></div>
+                                            <div className="hidden content">
+                                                Sig In
+                                            </div>
+                                        </div>
+                                        <div className="options">
+                                            <button className="ui facebook button" onClick={facebook}>
+                                                <i className="facebook icon"></i>
+                                                Signin with Facebook
+                                            </button>
+                                            <button className="ui google plus button" onClick={google}>
+                                                <i className="google plus icon"></i>
+                                                Sign in with Google
+                                            </button>
+                                            <button className="ui vk button" onClick={github}>
+                                                <i className="github icon"></i>
+                                                Sign in with GitHub
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        }
+                    </div>
+
+                </div>
+
+            </div >
+        );
+    }
+}
+
+
+const mapStateToProps = (state) => {
+    return {
+        currentUser: state.user.currentUser
+    }
+}
+
+
+export default connect(mapStateToProps)(Header);

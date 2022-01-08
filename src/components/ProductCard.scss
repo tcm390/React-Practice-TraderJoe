@@ -1,0 +1,49 @@
+
+.card{
+  height: 100%;
+}
+.card:hover {
+  cursor: pointer;
+  
+  transform: scale(1.05);
+  transition: transform 0.5s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+
+  
+}
+
+
+  
+.subDes{
+  display: flex;
+  justify-content: space-between;
+  bottom: 0;
+  margin-top: 30px;
+.leftSubDes{
+  
+  display: flex;
+  font-family: 'Vujahday Script', cursive;
+  font-weight: bold; 
+  
+  .left{
+    color:rgb(255, 2, 99);
+    font-size:30px; 
+    text-align: left;
+    line-height: 1;
+  }
+  .right{
+    line-height: 2;
+    font-size: 18px;
+  }
+}
+.rightSubDes{
+  line-height: 3;
+  font-size: 15px;
+}
+}
+@media screen and (max-width: 992px) {
+  .card {
+    width: 100%;
+    margin-bottom: 50px;
+  }
+  
+}
