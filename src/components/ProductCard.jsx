@@ -28,13 +28,14 @@ class ProductCard extends React.Component {
 
             const addList = async () => {
 
-                const { data } = await axios.patch(queryString,
+                const { data } = await axios.post(queryString,
                     {
                         "userId": this.props.currentUser.id,
                         "productId": this.props.product.id,
                         "productName": this.props.product.Title,
                         "productImage": this.props.product.ImageUrl,
                         "productNumber": 1,
+                        "productPrice": this.props.product.Price,
                         headers: {
                             "Accept": "application/json",
                             "Content-Type": "application/json",
