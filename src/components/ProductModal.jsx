@@ -27,7 +27,7 @@ class ProductModal extends React.Component {
         if (prevProps.currentComment != this.props.currentComment
             && this.props.currentComment === true) {
 
-            const queryString = "http://localhost:3001/api/productComments/" + this.props.currentSelectedProduct.id;
+            const queryString = "http://localhost:5000/api/productComments/" + this.props.currentSelectedProduct.id;
             const getComment = async () => {
                 const { data } = await axios.get(queryString,
                     {
@@ -63,7 +63,7 @@ class ProductModal extends React.Component {
         this.setState({ currentRatingComment: e.target.value });
     }
     onSubmitRating() {
-        const queryString = "http://localhost:3001/api/productComments/" + this.props.currentSelectedProduct.id;
+        const queryString = "http://localhost:5000/api/productComments/" + this.props.currentSelectedProduct.id;
         const currentCallbackStar = this.callbackStar.current.state.currentStar;
         var rightNow = new Date();
         var res = rightNow.toISOString().slice(0, 10).replace(/-/g, "/");

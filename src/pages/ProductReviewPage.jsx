@@ -22,7 +22,7 @@ class ProductReviewPage extends React.Component {
         this.props.setCurrentCategory('All');
         this.props.setCurrentMainCategory('All');
         const getProduct = async () => {
-            const { data } = await axios.get('http://localhost:3001/api/products/',
+            const { data } = await axios.get('http://localhost:5000/api/products/',
                 {
                     headers: {
                         "Accept": "application/json",
@@ -42,7 +42,7 @@ class ProductReviewPage extends React.Component {
             || prevProps.currentOrder != this.props.currentOrder
         ) {
             //console.log('update');
-            let queryString = 'http://localhost:3001/api/products/';
+            let queryString = 'http://localhost:5000/api/products/';
             if (this.props.currentMainCategory !== 'All') {
                 queryString += 'category/' + this.props.currentMainCategory;
                 if (this.props.currentCategory !== 'All')
@@ -70,7 +70,7 @@ class ProductReviewPage extends React.Component {
     }
     sortProductList(data) {
         if (this.props.currentOrder === "Customer Review")
-            this.setState({ productList: this.sortListByPriceL(data.products) });
+            this.setState({ productList: this.sortListByRating(data.products) });
         if (this.props.currentOrder === "Price: Low to High")
             this.setState({ productList: this.sortListByPriceL(data.products) });
         if (this.props.currentOrder === "Price: High to Low")
@@ -79,6 +79,11 @@ class ProductReviewPage extends React.Component {
             this.setState({ productList: this.sortListByAlphA(data.products) });
         if (this.props.currentOrder === "Alphabetical: Z to A")
             this.setState({ productList: this.sortListByAlphZ(data.products) });
+    }
+    sortListByRating(unorderedList) {
+        const temp = unorderedList;
+        return temp.sort((a, b) => (a.RatingScore / (a.RatingUser + 0.000001) < b.RatingScore / (b.RatingUser + 0.000001)) ? 1 : -1)
+
     }
     sortListByAlphA(unorderedList) {
         const temp = unorderedList;
