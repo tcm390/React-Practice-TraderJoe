@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './Header.scss';
+
 // import Login from './Login';
 
 import HomePageImg from '../img/HomepageImg.png';
@@ -55,7 +56,10 @@ class Header extends React.Component {
                     <div className="right" >
                         {this.props.currentUser ? (
                             <div className="sinInRightNav">
-                                <i className="shopping cart big icon"></i>
+                                <Link to='/sl' style={{ color: 'white' }}>
+                                    <i className="shopping cart large icon" ></i>
+                                </Link>
+
                                 <img
                                     src={this.props.currentUser.photos[0].value}
                                     alt=""

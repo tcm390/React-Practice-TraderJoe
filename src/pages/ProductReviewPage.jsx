@@ -82,7 +82,14 @@ class ProductReviewPage extends React.Component {
     }
     sortListByRating(unorderedList) {
         const temp = unorderedList;
-        return temp.sort((a, b) => (a.RatingScore / (a.RatingUser + 0.000001) < b.RatingScore / (b.RatingUser + 0.000001)) ? 1 : -1)
+        return temp.sort(function (a, b) {
+            if (a.RatingUser !== 0 && b.RatingUser !== 0)
+                return (a.RatingScore / a.RatingUser < b.RatingScore / b.RatingUser) ? 1 : -1;
+            else if (a.RatingUser === 0 && b.RatingUser !== 0)
+                return 1;
+            else
+                return -1;
+        });
 
     }
     sortListByAlphA(unorderedList) {
@@ -112,7 +119,7 @@ class ProductReviewPage extends React.Component {
             <div>
                 <NewsBar />
                 {/* <CustomerWinner /> */}
-                <List />
+                {/* <List /> */}
                 <CategoryMenu />
                 <div className="productContainer">
 

@@ -3,13 +3,14 @@ import React from 'react';
 import './ProductCard.scss';
 import ProductModal from './ProductModal';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 
 import { setCurrentSelectedProduct } from '../redux/choosingProduct/selectedProductActions';
 import { setCurrentComment } from '../redux/comment/commentActions';
 
 class ProductCard extends React.Component {
-
+    addToCartLoading = 0;
     commentProduct = () => {
         // console.log(this.props.currentComment);
         document.body.style.overflow = 'hidden';
@@ -18,7 +19,40 @@ class ProductCard extends React.Component {
 
     }
     addToList = () => {
-        console.log('shop')
+        // console.log(this.addToCartLoading);
+        if (this.props.currentUser && this.addToCartLoading === 0) {
+            this.addToCartLoading = 1;
+            // console.log(this.addToCartLoading);
+            // console.log('shop', this.props.product.Title);
+            const queryString = "http://localhost:5000/api/users/" + this.props.currentUser.id;
+
+            const addList = async () => {
+
+                const { data } = await axios.patch(queryString,
+                    {
+                        "userId": this.props.currentUser.id,
+                        "productId": this.props.product.id,
+                        "productName": this.props.product.Title,
+                        "productImage": this.props.product.ImageUrl,
+                        "productNumber": 1,
+                        headers: {
+                            "Accept": "application/json",
+                            "Content-Type": "application/json",
+                            "Access-Control-Allow-Credentials": true,
+                            "SameSite": "None"
+                        }
+                    }).then((response) => {
+                        // console.log(response);
+                        this.addToCartLoading = 0;
+                        // do something with the response
+                    })
+                    .catch((err) => console.log(err))
+
+
+            };
+            addList();
+
+        }
 
     }
     render() {
@@ -82,44 +116,6 @@ class ProductCard extends React.Component {
                 </div>
 
             </div>
-
-            // <div className="card"  >
-
-            //     <img src={this.props.product.ImageUrl} alt="" className="img" onClick={this.commentProduct} />
-            //     <vr
-            //         style={{
-            //             color: 'black',
-            //             backgroundColor: 'black',
-            //             height: 1
-            //         }}
-            //     />
-            //     <div className="title">{this.props.product.Title}</div>
-            //     <div className="des">
-
-            //         <div className="subDes">
-            //             <div className="leftSubDes">
-            //                 <div className="left">6.6</div>
-            //                 <div className="right">/10</div>
-
-            //             </div>
-            //             <div className="rightSubDes">$ {this.props.product.Price}</div>
-            //         </div>
-            //     </div>
-
-
-            //     <div className="addToCartList" onClick={this.addToList}>
-            //         <i style={{ margin: '10px', color: '#ffffff' }} className="star small icon">
-            //         </i>
-            //         <div className="addToCartListText">Add To Shopping List</div>
-            //     </div>
-
-
-            // </div >
-
-
-
-
-
         )
     }
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import axios from 'axios';
 import { setCurrentUser } from './redux/user/userAction';
 
 import Header from './components/Header';
@@ -9,6 +9,7 @@ import ProductReviewPage from './pages/ProductReviewPage';
 import Search from './pages/Search';
 import Featured from './components/Featured';
 import ProductModal from './components/ProductModal';
+import ShoppingList from './pages/ShoppingList';
 // import Login from './components/Login';
 
 import './App.scss';
@@ -18,6 +19,19 @@ import './App.scss';
 
 class App extends React.Component {
 
+  getList = async () => {
+    const { data } = await axios.get('http://localhost:5000/api/users/' + this.props.currentUser.id,
+      {
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+          "SameSite": "None"
+        }
+      });
+    // console.log(data);
+
+  };
 
   componentDidMount() {
 
@@ -38,13 +52,16 @@ class App extends React.Component {
         })
         .then((resObject) => {
           this.props.setCurrentUser(resObject.user);
-
+          // console.log(resObject.user.id, this.props.currentUser.id);
+          this.getList()
         })
         .catch((err) => {
           console.log(err);
         });
     };
     getUser();
+
+
   }
   render() {
     return (
@@ -57,6 +74,7 @@ class App extends React.Component {
           <Switch>
             <Route path="/" exact component={ProductReviewPage} />
             <Route path="/s" exact component={Search} />
+            <Route path="/sl" exact component={ShoppingList} />
 
             {/* <Route path="/login" exact component={this.props.currentUser ? HomePage : Login} />
           <Route path="/post/:id" exact component={this.props.currentUser ? Post : Login} /> */}

@@ -16,7 +16,7 @@
     img{
         position: relative; 
         // width: 120px;
-        height: 100px;
+        // height: 100px;
         padding: 10px 10px;
     }
     .name{
@@ -37,8 +37,10 @@
 }
 @media screen and (max-width: 992px) {
     .winnerCardContainer{
-      width: 25%;
-      // margin-bottom: 50px;
+        width: 25%;
+        img{
+            transform: scale(1.25);
+        }
     }
     
   }
