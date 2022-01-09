@@ -1,6 +1,10 @@
 import React from 'react';
 import './ShoppingListCard.scss';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { setCurrentTotalPrice } from '../redux/shoppingList/totalPriceActions';
+import { setCurrentUser } from '../redux/user/userAction';
+
 class ShoppingListCard extends React.Component {
     state = { tempProductNumber: this.props.product.productNumber };
     constructor(props) {
@@ -28,6 +32,7 @@ class ShoppingListCard extends React.Component {
                     }
                 }).then((response) => {
                     console.log(response);
+                    this.props.setCurrentTotalPrice(Math.round((this.props.currentTotalPrice + this.props.product.productPrice) * 100) / 100);
                 })
                 .catch((err) => console.log(err))
         };
@@ -53,6 +58,7 @@ class ShoppingListCard extends React.Component {
                         }
                     }).then((response) => {
                         console.log(response);
+                        this.props.setCurrentTotalPrice(Math.round((this.props.currentTotalPrice - this.props.product.productPrice) * 100) / 100);
                     })
                     .catch((err) => console.log(err))
             };
@@ -61,7 +67,7 @@ class ShoppingListCard extends React.Component {
 
     }
     onDeleteProductNumber() {
-
+        this.props.setCurrentTotalPrice(Math.round((this.props.currentTotalPrice - this.props.product.productPrice * this.state.tempProductNumber) * 100) / 100);
         this.state.tempProductNumber = 0;
         this.setState({ tempProductNumber: 0 });
         const editListNumber = async () => {
@@ -79,6 +85,7 @@ class ShoppingListCard extends React.Component {
                     }
                 }).then((response) => {
                     console.log(response);
+
                 })
                 .catch((err) => console.log(err))
         };
@@ -121,4 +128,16 @@ class ShoppingListCard extends React.Component {
         )
     }
 }
-export default ShoppingListCard;
+const mapStateToProps = (state) => {
+    return {
+        currentUser: state.user.currentUser,
+        currentTotalPrice: state.totalPrice.currentTotalPrice
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        setCurrentUser: user => dispatch(setCurrentUser(user)),
+        setCurrentTotalPrice: price => dispatch(setCurrentTotalPrice(price))
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(ShoppingListCard);

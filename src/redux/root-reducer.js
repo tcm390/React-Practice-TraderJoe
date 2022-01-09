@@ -8,7 +8,8 @@ import termReducer from './searchTerm/termReducer';
 import searchButtonReducer from './searchButton/searchButtonReducer';
 import commentReducer from './comment/commentReducer';
 import starReducer from './star/starReducer';
-import selectedProductReducer from'./choosingProduct/selectedProductReducer';
+import selectedProductReducer from './choosingProduct/selectedProductReducer';
+import totalPriceReducer from './shoppingList/totalPriceReducer'
 
 export default combineReducers({
     user: userReducer,
@@ -19,5 +20,6 @@ export default combineReducers({
     searchButton: searchButtonReducer,
     comment: commentReducer,
     star: starReducer,
-    selectedProduct:selectedProductReducer
+    selectedProduct: selectedProductReducer,
+    totalPrice: totalPriceReducer
 })

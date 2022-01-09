@@ -3,11 +3,13 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import ShoppingListCard from '../components/ShoppingListCard';
 import { setCurrentUser } from '../redux/user/userAction';
+import { setCurrentTotalPrice } from '../redux/shoppingList/totalPriceActions';
 
 class ShoppingList extends React.Component {
-    state = { shoppingList: [], currentUser: '' };
+    state = { shoppingList: [], currentUser: '', sumPrice: 0 };
     tempUserId = ''
     componentDidMount() {
+        this.props.setCurrentTotalPrice(0);
         const getUser = () => {
             fetch("http://localhost:5000/auth/login/success", {
                 method: "GET",
@@ -46,6 +48,12 @@ class ShoppingList extends React.Component {
                     }
                 });
             this.setState({ shoppingList: data[0].shoppingList })
+            this.state.shoppingList.map((product) => {
+                // this.state.sumPrice += product.productPrice * product.productNumber;
+                // console.log(this.state.sumPrice);
+                this.props.setCurrentTotalPrice(Math.round((this.props.currentTotalPrice + product.productPrice * product.productNumber) * 100) / 100);
+            })
+
         };
 
     }
@@ -54,12 +62,17 @@ class ShoppingList extends React.Component {
         return (
 
             <div>
-                {this.state.shoppingList.map((product) => {
-                    return (
-                        <ShoppingListCard key={product.productId} product={product} currentUser={this.state.currentUser} />
+                {
+                    this.state.shoppingList.map((product) => {
+                        // this.state.sumPrice += product.productPrice * product.productNumber;
+                        // console.log(this.state.sumPrice);
+                        return (
+                            <ShoppingListCard key={product.productId} product={product} currentUser={this.state.currentUser} />
 
-                    )
-                })}
+                        )
+                    })
+                }
+                {this.props.currentTotalPrice}
             </div>
         )
 
@@ -68,12 +81,14 @@ class ShoppingList extends React.Component {
 }
 const mapStateToProps = (state) => {
     return {
-        currentUser: state.user.currentUser
+        currentUser: state.user.currentUser,
+        currentTotalPrice: state.totalPrice.currentTotalPrice
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
-        setCurrentUser: user => dispatch(setCurrentUser(user))
+        setCurrentUser: user => dispatch(setCurrentUser(user)),
+        setCurrentTotalPrice: price => dispatch(setCurrentTotalPrice(price))
     }
 }
 
