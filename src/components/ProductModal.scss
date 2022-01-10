@@ -113,12 +113,8 @@
 @media screen and (max-width: 992px) {
   .mymodal {
     flex-direction: column;
-    
-    .profile{
-      .profileDescription{
-        margin-bottom: 50px;
-      }
-    }
+    -webkit-flex: 0;
+    flex-shrink: 0;
   }
   
 }
