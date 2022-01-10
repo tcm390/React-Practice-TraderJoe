@@ -86,8 +86,14 @@
 @media screen and (max-width: 992px) {
   .navbar{
     .container{
-      transform: scale(0.8);
+      transform: scale(0.7);
       padding: 0px 0px;
+      .right{
+        .userName{
+          display: none;
+        }
+      }
+      
     }
   }
   
