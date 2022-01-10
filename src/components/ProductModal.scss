@@ -115,7 +115,9 @@
     flex-direction: column;
     
     .profile{
-      margin: 300px;
+      .profileDescription{
+        margin-bottom: 50px;
+      }
     }
   }
   
