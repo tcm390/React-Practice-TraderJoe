@@ -41,7 +41,7 @@ class App extends React.Component {
 
   componentDidMount() {
     const getUser = async () => {
-      const { data } = await axios.get("http://traderjoesapi-wacky-tiger-ir.mybluemix.net/auth/login/success",
+      const { data } = await axios.get("https://traderjoesapi-wacky-tiger-ir.mybluemix.net/auth/login/success",
         {
           headers: {
             "Accept": "application/json",
