@@ -81,7 +81,7 @@ class App extends React.Component {
           console.log(err);
         });
     };
-    // getUser();
+    getUser();
 
 
   }
