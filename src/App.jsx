@@ -57,7 +57,7 @@ class App extends React.Component {
 
     // };
     const getUser = () => {
-      fetch("http://traderjoesapi-wacky-tiger-ir.mybluemix.net/auth/login/success", {
+      fetch("https://traderjoesapi-wacky-tiger-ir.mybluemix.net/auth/login/success", {
         method: "GET",
         withCredentials: true,
         credentials: 'include',
@@ -81,7 +81,7 @@ class App extends React.Component {
           console.log(err);
         });
     };
-    getUser();
+    // getUser();
 
 
   }
