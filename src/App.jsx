@@ -44,11 +44,12 @@ class App extends React.Component {
       console.log('hihihifirst');
       const { data } = await axios.get("https://traderjoesapi-wacky-tiger-ir.mybluemix.net/auth/login/success",
         {
-          headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Credentials": true
-          }
+          withCredentials: true
+          // headers: {
+          //   "Accept": "application/json",
+          //   "Content-Type": "application/json",
+          //   "Access-Control-Allow-Credentials": true
+          // }
         });
       console.log('hihihi' + data);
       this.props.setCurrentUser(data.user);
