@@ -26,8 +26,8 @@ class App extends React.Component {
         headers: {
           "Accept": "application/json",
           "Content-Type": "application/json",
-          // "Access-Control-Allow-Credentials": true,
-          // "SameSite": "None"
+          "Access-Control-Allow-Credentials": true,
+          "SameSite": "None"
         }
       });
     let tempTotalNumber = 0;
@@ -40,31 +40,45 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-
-    const getUser = () => {
-      fetch("https://traderjoesapi-wacky-tiger-ir.mybluemix.net/auth/login/success", {
-        method: "GET",
-        credentials: "include",
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": true,
-        },
-      })
-        .then((response) => {
-
-          if (response.status === 200) return response.json();
-          throw new Error("authentication has been failed!");
-        })
-        .then((resObject) => {
-          this.props.setCurrentUser(resObject.user);
-          // console.log(resObject.user.id, this.props.currentUser.id);
-          this.getList()
-        })
-        .catch((err) => {
-          console.log(err);
+    const getUser = async () => {
+      const { data } = await axios.get("https://traderjoesapi-wacky-tiger-ir.mybluemix.net/auth/login/success",
+        {
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Credentials": true,
+            "SameSite": "None"
+          }
         });
+      this.props.setCurrentUser(resObject.user);
+      // console.log(resObject.user.id, this.props.currentUser.id);
+      this.getList()
+
     };
+    // const getUser = () => {
+    //   fetch("https://traderjoesapi-wacky-tiger-ir.mybluemix.net/auth/login/success", {
+    //     method: "GET",
+    //     credentials: "include",
+    //     headers: {
+    //       "Accept": "application/json",
+    //       "Content-Type": "application/json",
+    //       "Access-Control-Allow-Credentials": true,
+    //     },
+    //   })
+    //     .then((response) => {
+
+    //       if (response.status === 200) return response.json();
+    //       throw new Error("authentication has been failed!");
+    //     })
+    //     .then((resObject) => {
+    //       this.props.setCurrentUser(resObject.user);
+    //       // console.log(resObject.user.id, this.props.currentUser.id);
+    //       this.getList()
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     });
+    // };
     getUser();
 
 
