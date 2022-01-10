@@ -26,8 +26,8 @@ class App extends React.Component {
         headers: {
           "Accept": "application/json",
           "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": '*',
-          "SameSite": "None"
+          // "Access-Control-Allow-Credentials": true,
+          // "SameSite": "None"
         }
       });
     let tempTotalNumber = 0;
