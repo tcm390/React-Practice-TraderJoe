@@ -8,7 +8,7 @@ import axios from 'axios';
 
 import { setCurrentSelectedProduct } from '../redux/choosingProduct/selectedProductActions';
 import { setCurrentComment } from '../redux/comment/commentActions';
-
+import { setCurrentTotalNumber } from '../redux/shoppingList/totalNumberActions';
 class ProductCard extends React.Component {
     addToCartLoading = 0;
     commentProduct = () => {
@@ -20,6 +20,9 @@ class ProductCard extends React.Component {
     }
     addToList = () => {
         // console.log(this.addToCartLoading);
+        if (this.addToCartLoading === 1) {
+            console.log('Already added');
+        }
         if (this.props.currentUser && this.addToCartLoading === 0) {
             this.addToCartLoading = 1;
             // console.log(this.addToCartLoading);
@@ -28,7 +31,7 @@ class ProductCard extends React.Component {
 
             const addList = async () => {
 
-                const { data } = await axios.post(queryString,
+                await axios.post(queryString,
                     {
                         "userId": this.props.currentUser.id,
                         "productId": this.props.product.id,
@@ -43,8 +46,13 @@ class ProductCard extends React.Component {
                             "SameSite": "None"
                         }
                     }).then((response) => {
-                        // console.log(response);
-                        this.addToCartLoading = 0;
+
+                        if (response.data === 'Product exist')
+                            console.log(response.data);
+                        else {
+                            this.props.setCurrentTotalNumber(this.props.currentTotalNumber + 1);
+                        }
+                        this.addToCartLoading = 1;
                         // do something with the response
                     })
                     .catch((err) => console.log(err))
@@ -125,13 +133,15 @@ class ProductCard extends React.Component {
 const mapDispatchToProps = dispatch => {
     return {
         setCurrentComment: comment => dispatch(setCurrentComment(comment)),
-        setCurrentSelectedProduct: product => dispatch(setCurrentSelectedProduct(product))
+        setCurrentSelectedProduct: product => dispatch(setCurrentSelectedProduct(product)),
+        setCurrentTotalNumber: totalNumber => dispatch(setCurrentTotalNumber(totalNumber))
     }
 }
 const mapStateToProps = (state) => {
     return {
         currentComment: state.comment.currentComment,
-        currentUser: state.user.currentUser
+        currentUser: state.user.currentUser,
+        currentTotalNumber: state.totalNumber.currentTotalNumber
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(ProductCard);

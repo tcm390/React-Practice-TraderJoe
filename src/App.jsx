@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { setCurrentUser } from './redux/user/userAction';
+import { setCurrentTotalNumber } from './redux/shoppingList/totalNumberActions';
 
 import Header from './components/Header';
 import ProductReviewPage from './pages/ProductReviewPage';
@@ -18,7 +19,7 @@ import './App.scss';
 
 
 class App extends React.Component {
-
+  // state = { shoppingListLength: 0 };
   getList = async () => {
     const { data } = await axios.get('http://localhost:5000/api/users/' + this.props.currentUser.id,
       {
@@ -29,7 +30,12 @@ class App extends React.Component {
           "SameSite": "None"
         }
       });
-    // console.log(data);
+    let tempTotalNumber = 0;
+    data[0].shoppingList.map((product) => {
+      tempTotalNumber += product.productNumber;
+    })
+    console.log(tempTotalNumber);
+    this.props.setCurrentTotalNumber(tempTotalNumber);
 
   };
 
@@ -68,8 +74,9 @@ class App extends React.Component {
 
       <BrowserRouter>
         <div className="home">
+
           <Header />
-          <Featured />
+          {/* <Featured /> */}
           <ProductModal />
           <Switch>
             <Route path="/" exact component={ProductReviewPage} />
@@ -95,7 +102,8 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    setCurrentUser: user => dispatch(setCurrentUser(user))
+    setCurrentUser: user => dispatch(setCurrentUser(user)),
+    setCurrentTotalNumber: totalNumber => dispatch(setCurrentTotalNumber(totalNumber))
   }
 }
 

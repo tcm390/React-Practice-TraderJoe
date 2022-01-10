@@ -13,7 +13,7 @@ import ProductCard from '../components/ProductCard';
 import List from '../components/List';
 import CustomerWinner from '../components/CustomerWinner';
 import NewsBar from '../components/NewsBar';
-
+import Featured from '../components/Featured';
 
 class ProductReviewPage extends React.Component {
 
@@ -117,10 +117,12 @@ class ProductReviewPage extends React.Component {
 
         return (
             <div>
+                <Featured />
                 <NewsBar />
                 {/* <CustomerWinner /> */}
-                {/* <List /> */}
+                <List />
                 <CategoryMenu />
+
                 <div className="productContainer">
 
                     {

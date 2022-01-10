@@ -25,7 +25,8 @@ class ProductModal extends React.Component {
     componentDidUpdate(prevProps, prevState) {
 
         if (prevProps.currentComment != this.props.currentComment
-            && this.props.currentComment === true) {
+            && this.props.currentComment === true
+        ) {
 
             const queryString = "http://localhost:5000/api/productComments/" + this.props.currentSelectedProduct.id;
             const getComment = async () => {

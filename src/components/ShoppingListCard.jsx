@@ -3,6 +3,7 @@ import './ShoppingListCard.scss';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { setCurrentTotalPrice } from '../redux/shoppingList/totalPriceActions';
+import { setCurrentTotalNumber } from '../redux/shoppingList/totalNumberActions';
 import { setCurrentUser } from '../redux/user/userAction';
 
 class ShoppingListCard extends React.Component {
@@ -16,6 +17,7 @@ class ShoppingListCard extends React.Component {
     }
     onAddProductNumber() {
         this.state.tempProductNumber = this.state.tempProductNumber + 1;
+        this.props.setCurrentTotalNumber(this.props.currentTotalNumber + 1);
         this.setState({ tempProductNumber: this.state.tempProductNumber });
         const editListNumber = async () => {
             const queryString = "http://localhost:5000/api/users/" + this.props.currentUser.id;
@@ -42,6 +44,7 @@ class ShoppingListCard extends React.Component {
     onMinusProductNumber() {
         if (this.state.tempProductNumber > 1) {
             this.state.tempProductNumber = this.state.tempProductNumber - 1;
+            this.props.setCurrentTotalNumber(this.props.currentTotalNumber - 1);
             this.setState({ tempProductNumber: this.state.tempProductNumber });
             const editListNumber = async () => {
                 const queryString = "http://localhost:5000/api/users/" + this.props.currentUser.id;
@@ -68,6 +71,7 @@ class ShoppingListCard extends React.Component {
     }
     onDeleteProductNumber() {
         this.props.setCurrentTotalPrice(Math.round((this.props.currentTotalPrice - this.props.product.productPrice * this.state.tempProductNumber) * 100) / 100);
+        this.props.setCurrentTotalNumber(this.props.currentTotalNumber - this.state.tempProductNumber);
         this.state.tempProductNumber = 0;
         this.setState({ tempProductNumber: 0 });
         const editListNumber = async () => {
@@ -108,17 +112,18 @@ class ShoppingListCard extends React.Component {
                             <div className="productTitle">
                                 {this.props.product.productName}
                             </div>
-                            <div className="productPrice">
+                            <div className="productPrice" style={{ color: 'rgb(5, 139, 5)' }}>
                                 {this.props.product.productPrice}
                             </div>
                         </div>
                         <div className="listProductNumber">
-                            <i className="minus circle icon" onClick={this.onMinusProductNumber} />
-                            <div>{this.state.tempProductNumber}</div>
-                            <i className="plus circle icon" onClick={this.onAddProductNumber} />
+                            <i style={{ cursor: 'pointer' }} className="minus circle large icon" onClick={this.onMinusProductNumber} />
+                            <div style={{ fontSize: '17px' }}>{this.state.tempProductNumber}</div>
+                            <i style={{ cursor: 'pointer' }} className="plus circle large icon" onClick={this.onAddProductNumber} />
                             <i className="trash alternate large icon" style={{ cursor: 'pointer', marginLeft: '30px' }} onClick={this.onDeleteProductNumber} />
 
                         </div>
+
 
                     </div>)
                     : (<span></span >)
@@ -131,13 +136,15 @@ class ShoppingListCard extends React.Component {
 const mapStateToProps = (state) => {
     return {
         currentUser: state.user.currentUser,
-        currentTotalPrice: state.totalPrice.currentTotalPrice
+        currentTotalPrice: state.totalPrice.currentTotalPrice,
+        currentTotalNumber: state.totalNumber.currentTotalNumber
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
         setCurrentUser: user => dispatch(setCurrentUser(user)),
-        setCurrentTotalPrice: price => dispatch(setCurrentTotalPrice(price))
+        setCurrentTotalPrice: price => dispatch(setCurrentTotalPrice(price)),
+        setCurrentTotalNumber: price => dispatch(setCurrentTotalNumber(price))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(ShoppingListCard);

@@ -56,8 +56,17 @@ class Header extends React.Component {
                     <div className="right" >
                         {this.props.currentUser ? (
                             <div className="sinInRightNav">
-                                <Link to='/sl' style={{ color: 'white' }}>
-                                    <i className="shopping cart large icon" ></i>
+                                <Link to='/sl' style={{ display: 'flex', color: 'white' }}>
+                                    <i className="shopping cart large icon" />
+                                    {this.props.currentTotalNumber > 0 ?
+                                        (<div style={{
+                                            backgroundColor: 'red', borderRadius: '50%', lineHeight: '25px',
+                                            textAlign: 'center', position: 'absolute', transform: 'translate(50%, -50%)', fontSize: '10px', width: '25px', height: '25px'
+                                        }}>
+                                            {this.props.currentTotalNumber}
+                                        </div>)
+                                        : (<span></span>)}
+
                                 </Link>
 
                                 <img
@@ -116,7 +125,8 @@ class Header extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        currentUser: state.user.currentUser
+        currentUser: state.user.currentUser,
+        currentTotalNumber: state.totalNumber.currentTotalNumber
     }
 }
 

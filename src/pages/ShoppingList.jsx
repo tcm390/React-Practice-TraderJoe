@@ -61,18 +61,25 @@ class ShoppingList extends React.Component {
     render() {
         return (
 
-            <div>
+            <div style={{ marginTop: '10%', textAlign: 'center' }}>
+                <h1 >Shopping List</h1>
+                <hr style={{ width: '50%' }}></hr>
                 {
                     this.state.shoppingList.map((product) => {
                         // this.state.sumPrice += product.productPrice * product.productNumber;
                         // console.log(this.state.sumPrice);
                         return (
-                            <ShoppingListCard key={product.productId} product={product} currentUser={this.state.currentUser} />
+                            <div>
+
+                                <ShoppingListCard key={product.productId} product={product} currentUser={this.state.currentUser} />
+
+                            </div>
 
                         )
                     })
                 }
-                {this.props.currentTotalPrice}
+                <hr style={{ width: '50%' }}></hr>
+                <h2 style={{ marginBottom: '100px', marginLeft: '25%' }}>Subtotal: ${this.props.currentTotalPrice}</h2>
             </div>
         )
 
