@@ -21,7 +21,7 @@ import './App.scss';
 class App extends React.Component {
   // state = { shoppingListLength: 0 };
   getList = async () => {
-    const { data } = await axios.get('http://localhost:5000/api/users/' + this.props.currentUser.id,
+    const { data } = await axios.get('https://traderjoesapi-wacky-tiger-ir.mybluemix.net/api/users/' + this.props.currentUser.id,
       {
         headers: {
           "Accept": "application/json",
@@ -34,7 +34,7 @@ class App extends React.Component {
     data[0].shoppingList.map((product) => {
       tempTotalNumber += product.productNumber;
     })
-    console.log(tempTotalNumber);
+    // console.log(tempTotalNumber);
     this.props.setCurrentTotalNumber(tempTotalNumber);
 
   };
@@ -42,7 +42,7 @@ class App extends React.Component {
   componentDidMount() {
 
     const getUser = () => {
-      fetch("http://localhost:5000/auth/login/success", {
+      fetch("https://traderjoesapi-wacky-tiger-ir.mybluemix.net/auth/login/success", {
         method: "GET",
         credentials: "include",
         headers: {

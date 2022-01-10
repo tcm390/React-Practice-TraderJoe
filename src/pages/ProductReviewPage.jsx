@@ -22,7 +22,7 @@ class ProductReviewPage extends React.Component {
         this.props.setCurrentCategory('All');
         this.props.setCurrentMainCategory('All');
         const getProduct = async () => {
-            const { data } = await axios.get('http://localhost:5000/api/products/',
+            const { data } = await axios.get('https://traderjoesapi-wacky-tiger-ir.mybluemix.net/api/products/',
                 {
                     headers: {
                         "Accept": "application/json",
@@ -42,7 +42,7 @@ class ProductReviewPage extends React.Component {
             || prevProps.currentOrder != this.props.currentOrder
         ) {
             //console.log('update');
-            let queryString = 'http://localhost:5000/api/products/';
+            let queryString = 'https://traderjoesapi-wacky-tiger-ir.mybluemix.net/api/products/';
             if (this.props.currentMainCategory !== 'All') {
                 queryString += 'category/' + this.props.currentMainCategory;
                 if (this.props.currentCategory !== 'All')
