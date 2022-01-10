@@ -10,31 +10,44 @@ class ShoppingList extends React.Component {
     tempUserId = ''
     componentDidMount() {
         this.props.setCurrentTotalPrice(0);
-        const getUser = () => {
-            fetch("https://traderjoesapi-wacky-tiger-ir.mybluemix.net/auth/login/success", {
-                method: "GET",
-                credentials: "include",
-                headers: {
-                    "Accept": "application/json",
-                    "Content-Type": "application/json",
-                    "Access-Control-Allow-Credentials": true,
-                },
-            })
-                .then((response) => {
-
-                    if (response.status === 200) return response.json();
-                    throw new Error("authentication has been failed!");
-                })
-                .then((resObject) => {
-                    this.props.setCurrentUser(resObject.user);
-                    this.tempUserId = resObject.user.id;
-                    this.setState({ currentUser: resObject.user })
-                    getList(this.tempUserId);
-                })
-                .catch((err) => {
-                    console.log(err);
+        const getUser = async () => {
+            console.log('hihihifirst');
+            const { data } = await axios.get("https://traderjoesapi-wacky-tiger-ir.mybluemix.net/auth/login/success",
+                {
+                    withCredentials: true
                 });
+            this.props.setCurrentUser(data.user);
+            this.tempUserId = data.user.id;
+            this.setState({ currentUser: data.user })
+            getList(this.tempUserId);
+
         };
+        // const getUser = () => {
+        //     fetch("https://traderjoesapi-wacky-tiger-ir.mybluemix.net/auth/login/success", {
+        //         method: "GET",
+        //         credentials: "include",
+        //         headers: {
+        //             "Accept": "application/json",
+        //             "Content-Type": "application/json",
+        //             "Access-Control-Allow-Credentials": true,
+        //         },
+        //     })
+
+        //         .then((response) => {
+
+        //             if (response.status === 200) return response.json();
+        //             throw new Error("authentication has been failed!");
+        //         })
+        //         .then((resObject) => {
+        //             this.props.setCurrentUser(resObject.user);
+        //             this.tempUserId = resObject.user.id;
+        //             this.setState({ currentUser: resObject.user })
+        //             getList(this.tempUserId);
+        //         })
+        //         .catch((err) => {
+        //             console.log(err);
+        //         });
+        // };
         getUser();
         const getList = async (userId) => {
             const queryString = 'https://traderjoesapi-wacky-tiger-ir.mybluemix.net/api/users/' + userId;
