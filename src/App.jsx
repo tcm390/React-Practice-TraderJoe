@@ -61,10 +61,12 @@ class App extends React.Component {
         method: "GET",
         // withCredentials: true,
         // credentials: 'include',
+        mode: "no-cors",
         headers: {
           "Accept": "application/json",
           "Content-Type": "application/json",
           "Access-Control-Allow-Credentials": true,
+          "SameSite": "None"
         },
       })
         .then((response) => {
