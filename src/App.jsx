@@ -58,7 +58,7 @@ class App extends React.Component {
     // };
     const getUser = () => {
       fetch("https://traderjoesapi-wacky-tiger-ir.mybluemix.net/auth/login/success", {
-        method: "POST",
+        method: "GET",
         // withCredentials: true,
         // credentials: 'include',
         headers: {
