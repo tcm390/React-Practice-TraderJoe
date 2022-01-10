@@ -12,8 +12,14 @@ const Featured = () => {
             />
             <div className="info">
                 <div>
-                    Trader Joe's is an American chain of grocery stores headquartered in Monrovia, California. The chain has over 530 stores nationwide.
-                    The first Trader Joe's store was opened in 1967 by founder Joe Coulombe in Pasadena, California. It was owned by German entrepreneur Theo Albrecht from 1979 until his death in 2010, when ownership passed to his heirs. The company has offices in Monrovia and Boston, Massachusetts.
+                    Trader Joe's is everyone's all-time favorite  organic groceries store. They have the most fresh produce and limited products in every seasons.<br />
+
+                    In this website, you can find what's the newest product in this season, haul videos and rating from true customer's reviews.
+
+                    We also invite you to share your review with us.<br />
+
+                    What's more, you can add anything you want to try in your cart to create your own shopping list! Once it gets done....let's go to Trader Joe's!
+
                 </div>
                 <div
                     style={{ marginTop: '10px' }}
