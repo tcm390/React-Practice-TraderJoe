@@ -23,7 +23,7 @@ class CategoryMenu extends React.Component {
         return (
             <div>
                 <div className="uisegment">
-                    <div style={{ overflow: 'auto' }} className="ui container">
+                    <div style={{ overflow: 'auto' }} className="uicontainer">
                         <div className="ui tabular white menu compact" >
                             <a className={`item ${'All' === this.props.currentMainCategory ? 'active' : ''}`} onClick={() => { this.props.setCurrentMainCategory('All'); }}>
                                 All

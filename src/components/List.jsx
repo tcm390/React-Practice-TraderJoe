@@ -29,7 +29,7 @@ export default function List() {
     <div className="list">
       <br></br>
       <br></br>
-      <div className="ui container">
+      <div className="uicontainer">
         <div className="whatsnew">
           <div className="ui secondary pointing menu compact ">
             <div className="item active" >

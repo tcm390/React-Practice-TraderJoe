@@ -18,7 +18,7 @@ class NewsBar extends React.Component {
         return (
 
             <div style={{ marginTop: "10px" }} className="uisegment">
-                <div className="ui container">
+                <div className="uicontainer">
                     <div className="whatsnew">
                         <div className="ui secondary pointing menu compact">
                             <a className={`item ${this.state.news === 1 ? 'active' : ''}`} onClick={this.onClickNews}>
