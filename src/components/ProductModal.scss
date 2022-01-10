@@ -117,10 +117,12 @@
     flex-direction: column;
    
     .profile{
-      flex-shrink: 0;
+      min-width: auto
+      // flex-shrink: 0;
     }
     .comment{
-      flex-shrink: 0;
+      min-width: auto
+      // flex-shrink: 0;
     }
   }
   
