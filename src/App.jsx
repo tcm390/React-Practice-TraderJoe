@@ -60,8 +60,8 @@ class App extends React.Component {
       fetch("https://traderjoesapi-wacky-tiger-ir.mybluemix.net/auth/login/success", {
         method: "GET",
         // withCredentials: true,
-        // credentials: 'include',
-        mode: "no-cors",
+        credentials: 'include',
+        // mode: "no-cors",
         headers: {
           "Accept": "application/json",
           "Content-Type": "application/json",
