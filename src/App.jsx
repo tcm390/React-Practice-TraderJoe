@@ -50,7 +50,8 @@ class App extends React.Component {
             "SameSite": "None"
           }
         });
-      this.props.setCurrentUser(resObject.user);
+      console.log(data)
+      this.props.setCurrentUser(data[0].user);
       // console.log(resObject.user.id, this.props.currentUser.id);
       this.getList()
 
