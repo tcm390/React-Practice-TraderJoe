@@ -78,7 +78,7 @@ class Header extends React.Component {
                                 </div>
                                 <div className="profile">
                                     <div style={{ backgroundColor: 'rgba(0,0,0,0)', borderRadius: '10px', color: 'white' }} className="ui animated black big fade button" tabIndex="0" onClick={this.logout}>
-                                        <div className="visible content"><i className="sign-out icon" /></div>
+                                        <div className="visible content"><i className="sign-out large icon" /></div>
                                         <div className="hidden content">
                                             Sig Out
                                         </div>
@@ -91,7 +91,7 @@ class Header extends React.Component {
                                 <div>
                                     <div className="loginProfile">
                                         <div style={{ cursor: 'none', backgroundColor: 'rgba(0,0,0,0)', borderRadius: '10px', color: 'white' }} className="ui animated  black big fade button" tabIndex="0">
-                                            <div className="visible content"><i className="sign-in icon" /></div>
+                                            <div className="visible content"><i className="sign-in large icon" /></div>
                                             <div className="hidden content">
                                                 Sig In
                                             </div>
