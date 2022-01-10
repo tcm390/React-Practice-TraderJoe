@@ -118,13 +118,13 @@ class ProductReviewPage extends React.Component {
         return (
             <div>
                 <Featured />
-
+                <NewsBar />
+                {/* <CustomerWinner /> */}
+                <List />
+                <CategoryMenu />
 
                 <div className="productContainer">
-                    <NewsBar />
-                    {/* <CustomerWinner /> */}
-                    <List />
-                    <CategoryMenu />
+
                     {
 
                         this.state.productList
