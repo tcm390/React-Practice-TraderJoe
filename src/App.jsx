@@ -58,7 +58,12 @@ class App extends React.Component {
     // };
     const getUser = () => {
       fetch("https://traderjoesapi-wacky-tiger-ir.mybluemix.net/auth/login/success", {
-        method: "GET"
+        method: "GET",
+        headers: {
+          "Accept": "application/json",
+          // "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+        },
       })
         .then((response) => {
 
