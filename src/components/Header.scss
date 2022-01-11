@@ -95,10 +95,14 @@
       justify-content: space-evenly;
       
       .right{
-        justify-content: space-evenly;
+        justify-content: center;
         .userName{
           display: none;
+          width: 0px;
         }
+      }
+      .left{
+        justify-content: center;
       }
       
     }
