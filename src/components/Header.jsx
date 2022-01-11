@@ -73,9 +73,9 @@ class Header extends React.Component {
                                     src={this.props.currentUser.photos[0].value}
                                     alt=""
                                 />
-                                {/* <div className="userName">
+                                <div className="userName">
                                     {this.props.currentUser.displayName ? (<div>{this.props.currentUser.displayName}</div>) : (<div>{this.props.currentUser.username}</div>)}
-                                </div> */}
+                                </div>
                                 <div className="profile">
                                     <div style={{ backgroundColor: 'rgba(0,0,0,0)', borderRadius: '10px', color: 'white' }} className="ui animated black big fade button" tabIndex="0" onClick={this.logout}>
                                         <div className="visible content"><i className="sign-out large icon" /></div>
