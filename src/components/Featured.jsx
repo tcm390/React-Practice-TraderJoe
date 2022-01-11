@@ -11,18 +11,13 @@ const Featured = () => {
                 alt=""
             />
             <div className="info">
-                <div>
+                <div style={{ textAlign: 'center' }} className="infoText">
                     Trader Joe's is everyone's all-time favorite  organic groceries store. They have the most fresh produce and limited products in every seasons.<br />
-
-                    In this website, you can find what's the newest product in this season, haul videos and rating from true customer's reviews.
-
-                    We also invite you to share your review with us.<br />
-
-                    What's more, you can add anything you want to try in your cart to create your own shopping list! Once it gets done....let's go to Trader Joe's!
+                    In this website, you can find what's the newest product in this season, haul videos and rating from true customer's reviews. We also invite you to share your review with us.What's more, you can add anything you want to try in your cart to create your own shopping list! Once it gets done....let's go to Trader Joe's!
 
                 </div>
                 <div
-                    style={{ marginTop: '10px' }}
+                    style={{ marginTop: '10px', textAlign: 'center' }}
                     className="bounceArrow bounce-1"
                     onClick={() => window.scrollTo({
                         top: 300,

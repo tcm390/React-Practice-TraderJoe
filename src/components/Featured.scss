@@ -11,17 +11,27 @@
     }
   
     .info {
-      width: 50%;
+      width: 100%;
       position: absolute;
-      transform: translate(50%, 0%);
+      // transform: translate(50%, 0%);
+      
       bottom: 10vh;
       color: white;
-      text-align: center;
+      // text-align: center;
+      .infoText{
+        display: block;
+        margin: auto;
+        width:80%;
+      }
+      
       .bounceArrow{
+        width:50%;
+        display: block;
+        margin: auto;
         cursor: pointer;
         animation-duration: 2s;
         animation-iteration-count: infinite;
-        margin: 10 auto 0 auto;
+        // margin: 10 auto 0 auto;
         transform-origin: bottom;
       }
     }
@@ -35,14 +45,12 @@
         100% { transform: translateY(0); }
     }
   }
-  @media screen and (max-width: 992px) {
+  @media screen and (max-width: 600px) {
     
     .info {
-      // padding: -10px 0px;
-      div{
+      .infoText{
+        font-size: 10px;
         
-        font-size: 12px;
-        width: 125%;
       }
       
     }
