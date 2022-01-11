@@ -24,10 +24,10 @@
 
     display: flex;
     justify-content: space-between;
-    .profile{
+    .modalLeft{
       flex-shrink: 0;
     }
-    .comment{
+    .modalRight{
       flex-shrink: 0;
     }
     
@@ -56,12 +56,12 @@
     opacity: 0;
   }
   .comment{
-    flex:3;
+    
     margin: 5%;
     
   }
 .profile{
-    flex:4;
+    
     display: flex;
     flex-direction: column;
   //  width:60%;
@@ -121,14 +121,12 @@
     display: flex;
     flex-direction: column;
     
-    // .profile{
-    //   min-height: auto;
-    //   flex-shrink: 0;
-    // }
-    // .comment{
-    //   min-height: auto;
-    //   flex-shrink: 0;
-    // }
+    .modalLeft{
+      flex-shrink: 0;
+    }
+    .modalRight{
+      flex-shrink: 0;
+    }
   }
   
 }

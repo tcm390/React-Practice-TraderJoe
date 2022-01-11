@@ -120,92 +120,95 @@ class ProductModal extends React.Component {
                         closeTimeoutMS={500}
                     >
                         <i style={{ cursor: "pointer" }} className="close big icon" onClick={this.toggleModal} />
-                        <div className="profile">
-                            <div className="profilePicture">
-                                <img
+                        <div className="modalLeft">
+                            <div className="profile">
+                                <div className="profilePicture">
+                                    <img
 
-                                    src={this.props.currentSelectedProduct.ImageUrl}
-                                    alt=""
-                                />
-                                <div className="rightSubDes">
-                                    <i className="star yellow big icon" />
-                                    <div className="left">
-                                        {(Math.round((this.props.currentSelectedProduct.RatingScore / this.props.currentSelectedProduct.RatingUser * 1) * 10) / 10) * 2}
+                                        src={this.props.currentSelectedProduct.ImageUrl}
+                                        alt=""
+                                    />
+                                    <div className="rightSubDes">
+                                        <i className="star yellow big icon" />
+                                        <div className="left">
+                                            {(Math.round((this.props.currentSelectedProduct.RatingScore / this.props.currentSelectedProduct.RatingUser * 1) * 10) / 10) * 2}
+                                        </div>
+                                        <div className="right">/10</div>
+
                                     </div>
-                                    <div className="right">/10</div>
-
                                 </div>
-                            </div>
 
-                            <div className="profileTitle">
-                                <h1>{this.props.currentSelectedProduct.Title}</h1>
-                                <hr></hr>
-                            </div>
-                            <div className="profilePrice">
-                                <h4>${this.props.currentSelectedProduct.Price}</h4>
-                                <hr></hr>
-                            </div>
-                            <div className="profileDescription">
-                                {this.props.currentSelectedProduct.Description}
-                            </div>
+                                <div className="profileTitle">
+                                    <h1>{this.props.currentSelectedProduct.Title}</h1>
+                                    <hr></hr>
+                                </div>
+                                <div className="profilePrice">
+                                    <h4>${this.props.currentSelectedProduct.Price}</h4>
+                                    <hr></hr>
+                                </div>
+                                <div className="profileDescription">
+                                    {this.props.currentSelectedProduct.Description}
+                                </div>
 
+                            </div>
                         </div>
+                        <div className="modalRight">
+                            <div className="comment">
 
-                        <div className="comment">
 
 
+                                <form class="ui reply form" >
 
-                            <form class="ui reply form" >
-
-                                <StarRating ref={this.callbackStar} />
-                                <div class="field">
-                                    <textarea placeholder="Optional..." onChange={this.onCommentFormChange} value={this.state.currentRatingComment}></textarea>
-                                </div>
-                                {this.props.currentUser ? (
-                                    <div style={{ backgroundColor: "rgb(255, 2, 99)" }} class="ui blue labeled submit icon button" onClick={this.onSubmitRating}>
-                                        <i class="icon edit"></i> Add Reply
-                                    </div>) : (
-                                        <div class="ui yellow message">You must login before you can rate this!
+                                    <StarRating ref={this.callbackStar} />
+                                    <div class="field">
+                                        <textarea placeholder="Optional..." onChange={this.onCommentFormChange} value={this.state.currentRatingComment}></textarea>
+                                    </div>
+                                    {this.props.currentUser ? (
+                                        <div style={{ backgroundColor: "rgb(255, 2, 99)" }} class="ui blue labeled submit icon button" onClick={this.onSubmitRating}>
+                                            <i class="icon edit"></i> Add Reply
+                                        </div>) : (
+                                            <div class="ui yellow message">You must login before you can rate this!
                                         Visit our Login page, then try again. Thank you!</div>
-                                    )}
+                                        )}
 
-                            </form>
-                            <div style={{ marginTop: '40px' }}>
-                                Comments({this.state.commentList.length})
+                                </form>
+                                <div style={{ marginTop: '40px' }}>
+                                    Comments({this.state.commentList.length})
                                 <hr />
-                            </div>
-                            <div >
-                                {this.state.commentList.map((comment) => {
-                                    return (
-                                        <div key={comment.id} class="ui  comments">
-                                            <div class="comment">
-                                                <a class="avatar">
-                                                    <img src={comment.userImage} />
-                                                </a>
-                                                <div class="content">
-                                                    <a class="author">{comment.userName}</a>
-                                                    <div class="metadata">
-                                                        <div class="date">{comment.date}</div>
-                                                    </div>
-                                                    <div className="commentsStar">
-                                                        <i class="star yellow icon" />
-                                                        {comment.userRating >= 2 ? (<i class="star yellow icon" />) : (<i class="star grey icon" />)}
-                                                        {comment.userRating >= 3 ? (<i class="star yellow icon" />) : (<i class="star grey icon" />)}
-                                                        {comment.userRating >= 4 ? (<i class="star yellow icon" />) : (<i class="star grey icon" />)}
-                                                        {comment.userRating >= 5 ? (<i class="star yellow icon" />) : (<i class="star grey icon" />)}
-                                                    </div>
-                                                    <div style={{ fontWeight: 'initial' }} class="text">
-                                                        {comment.comments}
-                                                    </div>
+                                </div>
+                                <div >
+                                    {this.state.commentList.map((comment) => {
+                                        return (
+                                            <div key={comment.id} class="ui  comments">
+                                                <div class="comment">
+                                                    <a class="avatar">
+                                                        <img src={comment.userImage} />
+                                                    </a>
+                                                    <div class="content">
+                                                        <a class="author">{comment.userName}</a>
+                                                        <div class="metadata">
+                                                            <div class="date">{comment.date}</div>
+                                                        </div>
+                                                        <div className="commentsStar">
+                                                            <i class="star yellow icon" />
+                                                            {comment.userRating >= 2 ? (<i class="star yellow icon" />) : (<i class="star grey icon" />)}
+                                                            {comment.userRating >= 3 ? (<i class="star yellow icon" />) : (<i class="star grey icon" />)}
+                                                            {comment.userRating >= 4 ? (<i class="star yellow icon" />) : (<i class="star grey icon" />)}
+                                                            {comment.userRating >= 5 ? (<i class="star yellow icon" />) : (<i class="star grey icon" />)}
+                                                        </div>
+                                                        <div style={{ fontWeight: 'initial' }} class="text">
+                                                            {comment.comments}
+                                                        </div>
 
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    );
-                                })}
+                                        );
+                                    })}
+                                </div>
+
+
                             </div>
-
-
                         </div>
 
 
