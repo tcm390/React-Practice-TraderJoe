@@ -120,7 +120,7 @@
   .mymodal {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    flex-flow: column wrap;
     .profile{
       min-height: auto;
       flex-shrink: 0;
