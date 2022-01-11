@@ -88,18 +88,18 @@
     }
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 400px) {
   .navbar{
     .container{
       // transform: scale(0.7);
-      justify-content: space-evenly;
+      justify-content: center;
       
       .right{
         justify-content: center;
-        .userName{
-          display: none;
-          width: 0px;
-        }
+        // .userName{
+        //   display: none;
+        //   width: 0px;
+        // }
       }
       .left{
         justify-content: center;
