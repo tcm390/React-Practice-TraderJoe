@@ -14,12 +14,13 @@
     }
     .container{
       
-      padding: 10px 50px;
+      // padding: 10px 50px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       height: 5rem;
       .left{
+        margin-left: 10rem;
         // flex:4;
         display: flex;
         flex-direction: row;
@@ -35,6 +36,7 @@
         }
       }
       .right{
+        margin-right: 10rem;
         // flex:1;
         display: flex;
         flex-direction: row;
@@ -90,15 +92,14 @@
   .navbar{
     .container{
       // transform: scale(0.7);
-      display: block;
-      padding: 0px 0px;
+     
       
-      .right{
-        margin-left: 5rem;
-        .userName{
-          display: none;
-        }
-      }
+      // .right{
+      //   margin-left: 5rem;
+      //   .userName{
+      //     display: none;
+      //   }
+      // }
       
     }
   }
