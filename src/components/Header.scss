@@ -92,14 +92,14 @@
   .navbar{
     .container{
       // transform: scale(0.7);
-     
+      justify-content: space-evenly;
       
-      // .right{
-      //   margin-left: 5rem;
-      //   .userName{
-      //     display: none;
-      //   }
-      // }
+      .right{
+        justify-content: space-evenly;
+        .userName{
+          display: none;
+        }
+      }
       
     }
   }
