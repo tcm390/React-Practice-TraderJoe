@@ -90,10 +90,11 @@
   .navbar{
     .container{
       // transform: scale(0.7);
+      display: block;
       padding: 0px 0px;
-      justify-content: space-around;
+      
       .right{
-        flex:3;
+        margin-left: 5rem;
         .userName{
           display: none;
         }
