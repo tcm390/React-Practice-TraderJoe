@@ -8,16 +8,7 @@ import { setCurrentTotalPrice } from '../redux/shoppingList/totalPriceActions';
 class ShoppingList extends React.Component {
     state = { shoppingList: [], currentUser: '', sumPrice: 0 };
     tempUserId = ''
-    constructor() {
-        super();
-        if (window.performance) {
-            if (performance.navigation.type == 1) {
-                alert("This page is reloaded");
-            } else {
-                alert("This page is not reloaded");
-            }
-        }
-    }
+
     componentDidMount() {
         this.props.setCurrentTotalPrice(0);
         const getUser = async () => {
