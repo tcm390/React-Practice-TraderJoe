@@ -18,7 +18,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 70px;
+      height: 5rem;
       .left{
         // flex:4;
         display: flex;
@@ -89,8 +89,8 @@
 @media screen and (max-width: 992px) {
   .navbar{
     .container{
-      transform: scale(0.7);
-      padding: 0px 0px;
+      // transform: scale(0.7);
+      // padding: 0px 0px;
       .right{
         .userName{
           display: none;
