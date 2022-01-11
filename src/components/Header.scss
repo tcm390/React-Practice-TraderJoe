@@ -91,7 +91,9 @@
     .container{
       // transform: scale(0.7);
       padding: 0px 0px;
+      justify-content: space-around;
       .right{
+        flex:3;
         .userName{
           display: none;
         }
