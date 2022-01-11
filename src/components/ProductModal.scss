@@ -120,14 +120,14 @@
   .mymodal {
     display: flex;
     flex-direction: column;
-   
+    justify-content: space-between;
     .profile{
       min-height: auto;
-      // flex-shrink: 0;
+      flex-shrink: 0;
     }
     .comment{
       min-height: auto;
-      // flex-shrink: 0;
+      flex-shrink: 0;
     }
   }
   
