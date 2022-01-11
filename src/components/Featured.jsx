@@ -11,7 +11,7 @@ const Featured = () => {
                 alt=""
             />
             <div className="info">
-                <div style={{ textAlign: 'center' }} className="infoText">
+                <div style={{ textAlign: 'left' }} className="infoText">
                     Trader Joe's is everyone's all-time favorite  organic groceries store. They have the most fresh produce and limited products in every seasons.<br />
                     In this website, you can find what's the newest product in this season, haul videos and rating from true customer's reviews. We also invite you to share your review with us.What's more, you can add anything you want to try in your cart to create your own shopping list! Once it gets done....let's go to Trader Joe's!
 
