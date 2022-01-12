@@ -24,31 +24,12 @@ import './App.scss';
 class App extends React.Component {
 
 
-  // getList = async () => {
-  //   // const { data } = await axios.get('https://traderjoesapi-wacky-tiger-ir.mybluemix.net/api/users/' + this.props.currentUser.id,
-  //   const { data } = await axios.get('http://localhost:5000/api/users/' + this.props.currentUser.id,
-  //     {
-  //       headers: {
-  //         "Accept": "application/json",
-  //         "Content-Type": "application/json",
-  //         "Access-Control-Allow-Credentials": true,
-  //         "SameSite": "None"
-  //       }
-  //     });
-  //   let tempTotalNumber = 0;
-  //   data[0].shoppingList.map((product) => {
-  //     tempTotalNumber += product.productNumber;
 
-  //   })
-  //   console.log(tempTotalNumber);
-  //   this.props.setCurrentTotalNumber(tempTotalNumber);
-
-  // };
 
   componentDidMount() {
     const getUser = async () => {
 
-      const { data } = await axios.get("https://traderjoesapi-wacky-tiger-ir.mybluemix.net/auth/login/success",
+      const { data } = await axios.get(process.env.REACT_APP_BACKEND_URL + "/auth/login/success",
         // const { data } = await axios.get("http://localhost:5000/auth/login/success",
         {
           withCredentials: true
