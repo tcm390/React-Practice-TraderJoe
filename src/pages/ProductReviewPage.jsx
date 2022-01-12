@@ -14,6 +14,7 @@ import './ProductReviewPage.scss';
 import ProductCard from '../components/ProductCard';
 import NewsBar from '../components/NewsBar';
 import Featured from '../components/Featured';
+import List from '../components/List';
 
 class ProductReviewPage extends React.Component {
 
