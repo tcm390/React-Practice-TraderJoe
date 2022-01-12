@@ -18,11 +18,11 @@
       bottom: 10vh;
       color: white;
       // text-align: center;
-      .infoText{
-        display: block;
-        margin: auto;
-        width:80%;
-      }
+      // .infoText{
+      //   display: block;
+      //   margin: auto;
+      //   width:80%;
+      // }
       
       .bounceArrow{
         width:50%;
@@ -48,10 +48,10 @@
   @media screen and (max-width: 600px) {
     
     .info {
-      .infoText{
-        font-size: 1rem;
+      // .infoText{
+      //   font-size: 1rem;
         
-      }
+      // }
       
     }
     
