@@ -63,7 +63,7 @@ const UploadImage = (props) => {
                     onChange={pickedHandler}
                 />
                 <div style={{ padding: '10px 10px', width: '100%', marginBottom: '10px', textAlign: 'center', borderStyle: previewUrl ? `none` : `dashed` }} className="image-upload">
-                    {previewUrl ? (<span></span>) : (<h1>Add Photo</h1>)}
+                    {previewUrl ? (<span></span>) : (<div><h1>Add Photo</h1><h4>(Max:500KB)</h4></div>)}
                     <div className="image_preview">
                         {previewUrl && (<div style={{
                             right: '0', marginRight: '20%', zIndex: '10', cursor: 'pointer',
