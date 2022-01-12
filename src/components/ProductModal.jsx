@@ -213,8 +213,12 @@ class ProductModal extends React.Component {
                                                             {comment.userRating >= 5 ? (<i class="star yellow icon" />) : (<i class="star grey icon" />)}
                                                         </div>
                                                         <div style={{ fontWeight: 'initial' }} class="text">
-                                                            {comment.commentImage ? (<img style={{ height: '100px' }} alt=" " src={`https://traderjoesapi-wacky-tiger-ir.mybluemix.net/${comment.commentImage}`} />) : (<div />)}
-                                                            {comment.comments}
+                                                            {comment.commentImage
+                                                                ? (<img style={{ height: '100px' }} alt=" " src={`https://traderjoesapi-wacky-tiger-ir.mybluemix.net/${comment.commentImage}`} />)
+                                                                : (<div />)}
+                                                            <div>
+                                                                {comment.comments}
+                                                            </div>
                                                         </div>
 
                                                     </div>
