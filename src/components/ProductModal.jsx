@@ -227,7 +227,7 @@ class ProductModal extends React.Component {
                                         );
                                     })}
                                 </div>
-
+                                <br></br>
 
                             </div>
                         </div>
