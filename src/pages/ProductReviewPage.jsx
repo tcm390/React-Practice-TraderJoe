@@ -146,7 +146,7 @@ class ProductReviewPage extends React.Component {
             <div>
                 <Featured />
                 <NewsBar />
-                {/* <List /> */}
+                <List />
                 <CategoryMenu />
 
                 <div className="productContainer">
