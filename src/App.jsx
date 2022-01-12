@@ -14,42 +14,47 @@ import ProductModal from './components/ProductModal';
 import ShoppingList from './pages/ShoppingList';
 // import Login from './components/Login';
 
+
+
 import './App.scss';
 
 
 
 
 class App extends React.Component {
-  // state = { shoppingListLength: 0 };
-  getList = async () => {
-    const { data } = await axios.get('https://traderjoesapi-wacky-tiger-ir.mybluemix.net/api/users/' + this.props.currentUser.id,
-      {
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": true,
-          "SameSite": "None"
-        }
-      });
-    let tempTotalNumber = 0;
-    data[0].shoppingList.map((product) => {
-      tempTotalNumber += product.productNumber;
-    })
-    // console.log(tempTotalNumber);
-    this.props.setCurrentTotalNumber(tempTotalNumber);
 
-  };
+
+  // getList = async () => {
+  //   // const { data } = await axios.get('https://traderjoesapi-wacky-tiger-ir.mybluemix.net/api/users/' + this.props.currentUser.id,
+  //   const { data } = await axios.get('http://localhost:5000/api/users/' + this.props.currentUser.id,
+  //     {
+  //       headers: {
+  //         "Accept": "application/json",
+  //         "Content-Type": "application/json",
+  //         "Access-Control-Allow-Credentials": true,
+  //         "SameSite": "None"
+  //       }
+  //     });
+  //   let tempTotalNumber = 0;
+  //   data[0].shoppingList.map((product) => {
+  //     tempTotalNumber += product.productNumber;
+
+  //   })
+  //   console.log(tempTotalNumber);
+  //   this.props.setCurrentTotalNumber(tempTotalNumber);
+
+  // };
 
   componentDidMount() {
     const getUser = async () => {
-      console.log('hihihifirst');
+
       const { data } = await axios.get("https://traderjoesapi-wacky-tiger-ir.mybluemix.net/auth/login/success",
+        // const { data } = await axios.get("http://localhost:5000/auth/login/success",
         {
           withCredentials: true
         });
-      console.log('hihihi' + data);
       this.props.setCurrentUser(data.user);
-      this.getList()
+      //this.getList()
 
     };
 
@@ -71,6 +76,7 @@ class App extends React.Component {
             <Route path="/" exact component={ProductReviewPage} />
             <Route path="/s" exact component={Search} />
             <Route path="/sl" exact component={ShoppingList} />
+            {/* <Route path="/uI" exact component={UploadImage} /> */}
 
             {/* <Route path="/login" exact component={this.props.currentUser ? HomePage : Login} />
           <Route path="/post/:id" exact component={this.props.currentUser ? Post : Login} /> */}

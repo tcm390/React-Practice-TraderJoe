@@ -8,6 +8,8 @@ import Modal from "react-modal";
 import StarRating from './StarRating';
 import axios from 'axios';
 
+import UploadImage from './uploadImage';
+
 Modal.setAppElement("#root");
 
 class ProductModal extends React.Component {
@@ -17,10 +19,14 @@ class ProductModal extends React.Component {
         this.onSubmitRating = this.onSubmitRating.bind(this);
         this.onCommentFormChange = this.onCommentFormChange.bind(this);
         this.callbackStar = React.createRef();
+        this.callbackImage = null;
     }
 
     state = { commentList: null, currentRatingComment: '' };
 
+    callbackImageHandler = data => {
+        this.callbackImage = data
+    };
 
     componentDidUpdate(prevProps, prevState) {
 
@@ -29,6 +35,7 @@ class ProductModal extends React.Component {
         ) {
 
             const queryString = "https://traderjoesapi-wacky-tiger-ir.mybluemix.net/api/productComments/" + this.props.currentSelectedProduct.id;
+            // const queryString = "http://localhost:5000/api/productComments/" + this.props.currentSelectedProduct.id;
             const getComment = async () => {
                 const { data } = await axios.get(queryString,
                     {
@@ -63,33 +70,38 @@ class ProductModal extends React.Component {
     onCommentFormChange(e) {
         this.setState({ currentRatingComment: e.target.value });
     }
+
     onSubmitRating() {
         const queryString = "https://traderjoesapi-wacky-tiger-ir.mybluemix.net/api/productComments/" + this.props.currentSelectedProduct.id;
+        // const queryString = "http://localhost:5000/api/productComments/" + this.props.currentSelectedProduct.id;
         const currentCallbackStar = this.callbackStar.current.state.currentStar;
         var rightNow = new Date();
         var res = rightNow.toISOString().slice(0, 10).replace(/-/g, "/");
 
+        // console.log(this.callbackImage);
+
+        const formData = new FormData();
+        formData.append("date", res);
+        formData.append("userName", this.props.currentUser.displayName ? (
+            this.props.currentUser.displayName) : (this.props.currentUser.username));
+        formData.append("userRating", currentCallbackStar);
+        formData.append("userId", this.props.currentUser.id);
+        formData.append("userImage", this.props.currentUser.photos[0].value);
+        formData.append("comments", this.state.currentRatingComment);
+        formData.append('image', this.callbackImage);
+
 
         const postComment = async () => {
-            const { data } = await axios.patch(queryString,
-                {
-                    "date": res,
-                    "userName": this.props.currentUser.displayName ? (
-                        this.props.currentUser.displayName) : (this.props.currentUser.username),
-                    "userRating": currentCallbackStar,
-                    "userId": this.props.currentUser.id,
-                    "userImage": this.props.currentUser.photos[0].value,
-                    "comments": this.state.currentRatingComment,
-                    headers: {
-                        "Accept": "application/json",
-                        "Content-Type": "application/json",
-                        "Access-Control-Allow-Credentials": true,
-                        "SameSite": "None"
-                    }
-                });
-
+            const { data } = await axios({
+                method: "patch",
+                url: queryString,
+                data: formData,
+                headers: { "Content-Type": "multipart/form-data" },
+            })
             this.setState({ commentList: data.productComment[0].comments });
-
+            if (!data) {
+                console.log('file to big');
+            }
 
         };
         postComment();
@@ -100,6 +112,7 @@ class ProductModal extends React.Component {
 
         this.props.setCurrentComment(false);
         document.body.style.overflow = 'unset';
+        this.callbackImage = null;
         // console.log(this.props.currentComment);
         // console.log(this.props.currentSelectedProduct);
 
@@ -143,12 +156,14 @@ class ProductModal extends React.Component {
                                     <hr></hr>
                                 </div>
                                 <div className="profilePrice">
-                                    <h4>${this.props.currentSelectedProduct.Price}</h4>
+                                    <h4>$ {this.props.currentSelectedProduct.Price}</h4>
                                     <hr></hr>
                                 </div>
                                 <div className="profileDescription">
                                     {this.props.currentSelectedProduct.Description}
+                                    <hr />
                                 </div>
+
 
                             </div>
                         </div>
@@ -160,6 +175,7 @@ class ProductModal extends React.Component {
                                 <form class="ui reply form" >
 
                                     <StarRating ref={this.callbackStar} />
+                                    <UploadImage callbackImage={this.callbackImageHandler} />
                                     <div class="field">
                                         <textarea placeholder="Optional..." onChange={this.onCommentFormChange} value={this.state.currentRatingComment}></textarea>
                                     </div>
@@ -197,6 +213,7 @@ class ProductModal extends React.Component {
                                                             {comment.userRating >= 5 ? (<i class="star yellow icon" />) : (<i class="star grey icon" />)}
                                                         </div>
                                                         <div style={{ fontWeight: 'initial' }} class="text">
+                                                            {comment.commentImage ? (<img style={{ height: '100px' }} alt=" " src={`https://traderjoesapi-wacky-tiger-ir.mybluemix.net/${comment.commentImage}`} />) : (<div />)}
                                                             {comment.comments}
                                                         </div>
 

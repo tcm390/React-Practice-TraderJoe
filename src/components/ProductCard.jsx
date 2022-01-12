@@ -11,23 +11,25 @@ import { setCurrentComment } from '../redux/comment/commentActions';
 import { setCurrentTotalNumber } from '../redux/shoppingList/totalNumberActions';
 class ProductCard extends React.Component {
     addToCartLoading = 0;
+    state = { tempAlreadyInCart: this.props.alreadyInCart };
     commentProduct = () => {
-        // console.log(this.props.currentComment);
+        // console.log(this.props.product.id);
         document.body.style.overflow = 'hidden';
         this.props.setCurrentComment(true);
         this.props.setCurrentSelectedProduct(this.props.product);
-
     }
     addToList = () => {
         // console.log(this.addToCartLoading);
         if (this.addToCartLoading === 1) {
-            console.log('Already added');
+            // console.log('Already added');
+            this.setState({ tempAlreadyInCart: 1 });
         }
         if (this.props.currentUser && this.addToCartLoading === 0) {
             this.addToCartLoading = 1;
             // console.log(this.addToCartLoading);
             // console.log('shop', this.props.product.Title);
             const queryString = "https://traderjoesapi-wacky-tiger-ir.mybluemix.net/api/users/" + this.props.currentUser.id;
+            // const queryString = "http://localhost:5000/api/users/" + this.props.currentUser.id;
 
             const addList = async () => {
 
@@ -50,6 +52,7 @@ class ProductCard extends React.Component {
                         if (response.data === 'Product exist')
                             console.log(response.data);
                         else {
+                            this.setState({ tempAlreadyInCart: 1 });
                             this.props.setCurrentTotalNumber(this.props.currentTotalNumber + 1);
                         }
                         this.addToCartLoading = 1;
@@ -104,13 +107,15 @@ class ProductCard extends React.Component {
                     </div>
                     <div class="ui two bottom attached buttons">
                         {this.props.currentUser ? (
-                            <div class="ui icon button" onClick={this.addToList} >
-                                <i class="add icon" onClick={this.addToList}></i>
-                                Add
-                            </div>
+
+                            this.props.alreadyInCart === 1 || this.state.tempAlreadyInCart === 1
+                                ? (<div class="ui icon button" style={{ cursor: 'not-allowed' }}><span><i className="check icon"></i>Added</span></div>)
+                                : (<div class="ui icon button" onClick={this.addToList} ><span><i className="add icon" onClick={this.addToList}></i>Add to List</span></div>)
+
                         ) : (
-                                <div class="ui icon button" data-tooltip="Please login to add">
-                                    <i class="add icon" ></i>
+                                <div className="ui icon button" data-tooltip="Please login to add">
+
+                                    <i className="add icon" ></i>
                                     Add
                                 </div>
                             )

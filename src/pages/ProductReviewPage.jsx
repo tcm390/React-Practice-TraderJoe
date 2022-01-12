@@ -7,22 +7,46 @@ import { setCurrentMainCategory } from '../redux/category/mainCategoryActions';
 import { setCurrentCategory } from '../redux/category/categoryActions';
 import { setCurrentTerm } from '../redux/searchTerm/termActions';
 import { setCurrentSearchButton } from '../redux/searchButton/searchButtonActions';
+import { setCurrentTotalNumber } from '../redux/shoppingList/totalNumberActions';
+
 import CategoryMenu from '../components/CategoryMenu';
 import './ProductReviewPage.scss';
 import ProductCard from '../components/ProductCard';
-import List from '../components/List';
-import CustomerWinner from '../components/CustomerWinner';
 import NewsBar from '../components/NewsBar';
 import Featured from '../components/Featured';
 
 class ProductReviewPage extends React.Component {
 
-    state = { productList: [], currentIndex: 20 };
+    state = { productList: [], currentIndex: 20, tempShoppingList: new Map() };
+    getList = async () => {
+        const { data } = await axios.get('https://traderjoesapi-wacky-tiger-ir.mybluemix.net/api/users/' + this.props.currentUser.id,
+            // const { data } = await axios.get('http://localhost:5000/api/users/' + this.props.currentUser.id,
+            {
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Credentials": true,
+                    "SameSite": "None"
+                }
+            });
+        let tempTotalNumber = 0;
+        data[0].shoppingList.map((product) => {
+            tempTotalNumber += product.productNumber;
+            this.setState({ tempShoppingList: this.state.tempShoppingList.set(product.productId, 1) });
+
+        })
+        // console.log(this.state.tempShoppingList.size);
+        // console.log(tempTotalNumber);
+        this.props.setCurrentTotalNumber(tempTotalNumber);
+
+    };
     componentDidMount() {
         this.props.setCurrentCategory('All');
         this.props.setCurrentMainCategory('All');
         const getProduct = async () => {
+
             const { data } = await axios.get('https://traderjoesapi-wacky-tiger-ir.mybluemix.net/api/products/',
+                // const { data } = await axios.get('http://localhost:5000/api/products/',
                 {
                     headers: {
                         "Accept": "application/json",
@@ -33,6 +57,7 @@ class ProductReviewPage extends React.Component {
                 });
             this.sortProductList(data);
             this.setState({ currentIndex: 20 });
+            this.getList();
         };
         getProduct();
     }
@@ -42,7 +67,9 @@ class ProductReviewPage extends React.Component {
             || prevProps.currentOrder != this.props.currentOrder
         ) {
             //console.log('update');
+
             let queryString = 'https://traderjoesapi-wacky-tiger-ir.mybluemix.net/api/products/';
+            // let queryString = 'http://localhost:5000/api/products/';
             if (this.props.currentMainCategory !== 'All') {
                 queryString += 'category/' + this.props.currentMainCategory;
                 if (this.props.currentCategory !== 'All')
@@ -119,8 +146,7 @@ class ProductReviewPage extends React.Component {
             <div>
                 <Featured />
                 <NewsBar />
-                {/* <CustomerWinner /> */}
-                <List />
+                {/* <List /> */}
                 <CategoryMenu />
 
                 <div className="productContainer">
@@ -132,8 +158,8 @@ class ProductReviewPage extends React.Component {
                                 return (index < this.state.currentIndex)
                             })
                             .map(product => {
-
-                                return product.Price > 0 ? (<ProductCard key={product.id} product={product} />) : (null)
+                                // console.log(this.state.tempShoppingList.size);
+                                return product.Price > 0 ? (<ProductCard key={product.id} product={product} alreadyInCart={this.state.tempShoppingList.get(product.id) === 1 ? 1 : 0} />) : (null)
                             }
 
                             )
@@ -167,7 +193,8 @@ const mapStateToProps = (state) => {
         currentOrder: state.order.currentOrder,
         currentTerm: state.term.currentTerm,
         currentSearchButton: state.searchButton.currentSearchButton,
-        currentComment: state.comment.currentComment
+        currentComment: state.comment.currentComment,
+        currentUser: state.user.currentUser
     }
 }
 const mapDispatchToProps = dispatch => {
@@ -175,7 +202,8 @@ const mapDispatchToProps = dispatch => {
         setCurrentMainCategory: mainCategory => dispatch(setCurrentMainCategory(mainCategory)),
         setCurrentCategory: category => dispatch(setCurrentCategory(category)),
         setCurrentTerm: term => dispatch(setCurrentTerm(term)),
-        setCurrentSearchButton: searchButton => dispatch(setCurrentSearchButton(searchButton))
+        setCurrentSearchButton: searchButton => dispatch(setCurrentSearchButton(searchButton)),
+        setCurrentTotalNumber: totalNumber => dispatch(setCurrentTotalNumber(totalNumber))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(ProductReviewPage);

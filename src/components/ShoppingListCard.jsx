@@ -21,6 +21,7 @@ class ShoppingListCard extends React.Component {
         this.setState({ tempProductNumber: this.state.tempProductNumber });
         const editListNumber = async () => {
             const queryString = "https://traderjoesapi-wacky-tiger-ir.mybluemix.net/api/users/" + this.props.currentUser.id;
+            // const queryString = "http://localhost:5000/api/users/" + this.props.currentUser.id;
 
             await axios.patch(queryString,
                 {
@@ -48,6 +49,7 @@ class ShoppingListCard extends React.Component {
             this.setState({ tempProductNumber: this.state.tempProductNumber });
             const editListNumber = async () => {
                 const queryString = "https://traderjoesapi-wacky-tiger-ir.mybluemix.net/api/users/" + this.props.currentUser.id;
+                // const queryString = "http://localhost:5000/api/users/" + this.props.currentUser.id;
 
                 await axios.patch(queryString,
                     {
@@ -76,6 +78,7 @@ class ShoppingListCard extends React.Component {
         this.setState({ tempProductNumber: 0 });
         const editListNumber = async () => {
             const queryString = "https://traderjoesapi-wacky-tiger-ir.mybluemix.net/api/users/" + this.props.currentUser.id;
+            // const queryString = "http://localhost:5000/api/users/" + this.props.currentUser.id;
 
             await axios.patch(queryString,
                 {
@@ -88,7 +91,7 @@ class ShoppingListCard extends React.Component {
                         "SameSite": "None"
                     }
                 }).then((response) => {
-                    console.log(response);
+                    // console.log(response);
 
                 })
                 .catch((err) => console.log(err))

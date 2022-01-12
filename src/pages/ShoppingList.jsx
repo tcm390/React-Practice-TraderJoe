@@ -12,8 +12,9 @@ class ShoppingList extends React.Component {
     componentDidMount() {
         this.props.setCurrentTotalPrice(0);
         const getUser = async () => {
-            console.log('hihihifirst');
+            console.log();
             const { data } = await axios.get("https://traderjoesapi-wacky-tiger-ir.mybluemix.net/auth/login/success",
+                // const { data } = await axios.get("http://localhost:5000/auth/login/success",
                 {
                     withCredentials: true
                 });
@@ -23,36 +24,12 @@ class ShoppingList extends React.Component {
             getList(this.tempUserId);
 
         };
-        // const getUser = () => {
-        //     fetch("https://traderjoesapi-wacky-tiger-ir.mybluemix.net/auth/login/success", {
-        //         method: "GET",
-        //         credentials: "include",
-        //         headers: {
-        //             "Accept": "application/json",
-        //             "Content-Type": "application/json",
-        //             "Access-Control-Allow-Credentials": true,
-        //         },
-        //     })
 
-        //         .then((response) => {
-
-        //             if (response.status === 200) return response.json();
-        //             throw new Error("authentication has been failed!");
-        //         })
-        //         .then((resObject) => {
-        //             this.props.setCurrentUser(resObject.user);
-        //             this.tempUserId = resObject.user.id;
-        //             this.setState({ currentUser: resObject.user })
-        //             getList(this.tempUserId);
-        //         })
-        //         .catch((err) => {
-        //             console.log(err);
-        //         });
-        // };
         getUser();
         const getList = async (userId) => {
-            const queryString = 'https://traderjoesapi-wacky-tiger-ir.mybluemix.net/api/users/' + userId;
+            // const queryString = 'https://traderjoesapi-wacky-tiger-ir.mybluemix.net/api/users/' + userId;
             const { data } = await axios.get('https://traderjoesapi-wacky-tiger-ir.mybluemix.net/api/users/' + userId,
+                // const { data } = await axios.get('http://localhost:5000/api/users/' + userId,
                 {
                     headers: {
                         "Accept": "application/json",
@@ -66,6 +43,7 @@ class ShoppingList extends React.Component {
                 // this.state.sumPrice += product.productPrice * product.productNumber;
                 // console.log(this.state.sumPrice);
                 this.props.setCurrentTotalPrice(Math.round((this.props.currentTotalPrice + product.productPrice * product.productNumber) * 100) / 100);
+
             })
 
         };

@@ -13,6 +13,7 @@ class Header extends React.Component {
 
     logout = () => {
         window.open("https://traderjoesapi-wacky-tiger-ir.mybluemix.net/auth/logout", "_self");
+        // window.open("http://localhost:5000/auth/logout", "_self");
     };
     constructor() {
         super();
@@ -28,6 +29,7 @@ class Header extends React.Component {
 
         const github = () => {
             window.open("https://traderjoesapi-wacky-tiger-ir.mybluemix.net/auth/github", "_self");
+            // window.open("http://localhost:5000/auth/github", "_self");
         };
 
         const facebook = () => {
