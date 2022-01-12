@@ -20,7 +20,7 @@ class ProductReviewPage extends React.Component {
 
     state = { productList: [], currentIndex: 20, tempShoppingList: new Map() };
     getList = async () => {
-        const { data } = await axios.get('https://traderjoesapi-wacky-tiger-ir.mybluemix.net/api/users/' + this.props.currentUser.id,
+        const { data } = await axios.get(process.env.REACT_APP_BACKEND_URL + '/api/users/' + this.props.currentUser.id,
             // const { data } = await axios.get('http://localhost:5000/api/users/' + this.props.currentUser.id,
             {
                 headers: {
@@ -46,7 +46,7 @@ class ProductReviewPage extends React.Component {
         this.props.setCurrentMainCategory('All');
         const getProduct = async () => {
 
-            const { data } = await axios.get('https://traderjoesapi-wacky-tiger-ir.mybluemix.net/api/products/',
+            const { data } = await axios.get(process.env.REACT_APP_BACKEND_URL + '/api/products/',
                 // const { data } = await axios.get('http://localhost:5000/api/products/',
                 {
                     headers: {
@@ -69,7 +69,7 @@ class ProductReviewPage extends React.Component {
         ) {
             //console.log('update');
 
-            let queryString = 'https://traderjoesapi-wacky-tiger-ir.mybluemix.net/api/products/';
+            let queryString = process.env.REACT_APP_BACKEND_URL + '/api/products/';
             // let queryString = 'http://localhost:5000/api/products/';
             if (this.props.currentMainCategory !== 'All') {
                 queryString += 'category/' + this.props.currentMainCategory;

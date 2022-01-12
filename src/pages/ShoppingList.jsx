@@ -13,7 +13,7 @@ class ShoppingList extends React.Component {
         this.props.setCurrentTotalPrice(0);
         const getUser = async () => {
             console.log();
-            const { data } = await axios.get("https://traderjoesapi-wacky-tiger-ir.mybluemix.net/auth/login/success",
+            const { data } = await axios.get(process.env.REACT_APP_BACKEND_URL + "/auth/login/success",
                 // const { data } = await axios.get("http://localhost:5000/auth/login/success",
                 {
                     withCredentials: true
@@ -27,8 +27,7 @@ class ShoppingList extends React.Component {
 
         getUser();
         const getList = async (userId) => {
-            // const queryString = 'https://traderjoesapi-wacky-tiger-ir.mybluemix.net/api/users/' + userId;
-            const { data } = await axios.get('https://traderjoesapi-wacky-tiger-ir.mybluemix.net/api/users/' + userId,
+            const { data } = await axios.get(process.env.REACT_APP_BACKEND_URL + '/api/users/' + userId,
                 // const { data } = await axios.get('http://localhost:5000/api/users/' + userId,
                 {
                     headers: {

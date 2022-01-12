@@ -28,7 +28,6 @@ class App extends React.Component {
 
   componentDidMount() {
     const getUser = async () => {
-
       const { data } = await axios.get(process.env.REACT_APP_BACKEND_URL + "/auth/login/success",
         // const { data } = await axios.get("http://localhost:5000/auth/login/success",
         {

@@ -28,7 +28,7 @@ class ProductCard extends React.Component {
             this.addToCartLoading = 1;
             // console.log(this.addToCartLoading);
             // console.log('shop', this.props.product.Title);
-            const queryString = "https://traderjoesapi-wacky-tiger-ir.mybluemix.net/api/users/" + this.props.currentUser.id;
+            const queryString = process.env.REACT_APP_BACKEND_URL + "/api/users/" + this.props.currentUser.id;
             // const queryString = "http://localhost:5000/api/users/" + this.props.currentUser.id;
 
             const addList = async () => {

@@ -20,7 +20,7 @@ class ShoppingListCard extends React.Component {
         this.props.setCurrentTotalNumber(this.props.currentTotalNumber + 1);
         this.setState({ tempProductNumber: this.state.tempProductNumber });
         const editListNumber = async () => {
-            const queryString = "https://traderjoesapi-wacky-tiger-ir.mybluemix.net/api/users/" + this.props.currentUser.id;
+            const queryString = process.env.REACT_APP_BACKEND_URL+"/api/users/" + this.props.currentUser.id;
             // const queryString = "http://localhost:5000/api/users/" + this.props.currentUser.id;
 
             await axios.patch(queryString,
@@ -48,7 +48,7 @@ class ShoppingListCard extends React.Component {
             this.props.setCurrentTotalNumber(this.props.currentTotalNumber - 1);
             this.setState({ tempProductNumber: this.state.tempProductNumber });
             const editListNumber = async () => {
-                const queryString = "https://traderjoesapi-wacky-tiger-ir.mybluemix.net/api/users/" + this.props.currentUser.id;
+                const queryString = process.env.REACT_APP_BACKEND_URL+"/api/users/" + this.props.currentUser.id;
                 // const queryString = "http://localhost:5000/api/users/" + this.props.currentUser.id;
 
                 await axios.patch(queryString,
@@ -77,7 +77,7 @@ class ShoppingListCard extends React.Component {
         this.state.tempProductNumber = 0;
         this.setState({ tempProductNumber: 0 });
         const editListNumber = async () => {
-            const queryString = "https://traderjoesapi-wacky-tiger-ir.mybluemix.net/api/users/" + this.props.currentUser.id;
+            const queryString = process.env.REACT_APP_BACKEND_URL+"/api/users/" + this.props.currentUser.id;
             // const queryString = "http://localhost:5000/api/users/" + this.props.currentUser.id;
 
             await axios.patch(queryString,

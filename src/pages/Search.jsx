@@ -9,7 +9,7 @@ class Search extends React.Component {
     state = { productList: [], currentIndex: 20 };
     componentDidMount() {
         const getSearch = async () => {
-            const { data } = await axios.get('https://traderjoesapi-wacky-tiger-ir.mybluemix.net/api/products/search/' + this.props.currentTerm,
+            const { data } = await axios.get(process.env.REACT_APP_BACKEND_URL + '/api/products/search/' + this.props.currentTerm,
                 {
                     headers: {
                         "Accept": "application/json",
@@ -26,7 +26,7 @@ class Search extends React.Component {
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.currentSearchButton != this.props.currentSearchButton) {
             const getSearch = async () => {
-                const { data } = await axios.get('https://traderjoesapi-wacky-tiger-ir.mybluemix.net/api/products/search/' + this.props.currentTerm,
+                const { data } = await axios.get(process.env.REACT_APP_BACKEND_URL + '/api/products/search/' + this.props.currentTerm,
                     {
                         headers: {
                             "Accept": "application/json",

@@ -12,7 +12,7 @@ import HomePageImg from '../img/HomepageImg.png';
 class Header extends React.Component {
 
     logout = () => {
-        window.open("https://traderjoesapi-wacky-tiger-ir.mybluemix.net/auth/logout", "_self");
+        window.open(process.env.REACT_APP_BACKEND_URL + "/auth/logout", "_self");
         // window.open("http://localhost:5000/auth/logout", "_self");
     };
     constructor() {
@@ -24,16 +24,16 @@ class Header extends React.Component {
     render() {
         // console.log('123');
         const google = () => {
-            window.open("https://traderjoesapi-wacky-tiger-ir.mybluemix.net/auth/google", "_self");
+            window.open(process.env.REACT_APP_BACKEND_URL + "/auth/google", "_self");
         };
 
         const github = () => {
-            window.open("https://traderjoesapi-wacky-tiger-ir.mybluemix.net/auth/github", "_self");
+            window.open(process.env.REACT_APP_BACKEND_URL + "/auth/github", "_self");
             // window.open("http://localhost:5000/auth/github", "_self");
         };
 
         const facebook = () => {
-            window.open("https://traderjoesapi-wacky-tiger-ir.mybluemix.net/auth/facebook", "_self");
+            window.open(process.env.REACT_APP_BACKEND_URL + "/auth/facebook", "_self");
         };
 
         window.onscroll = () => {

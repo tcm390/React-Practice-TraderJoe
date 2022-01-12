@@ -34,7 +34,7 @@ class ProductModal extends React.Component {
             && this.props.currentComment === true
         ) {
 
-            const queryString = "https://traderjoesapi-wacky-tiger-ir.mybluemix.net/api/productComments/" + this.props.currentSelectedProduct.id;
+            const queryString = process.env.REACT_APP_BACKEND_URL + "/api/productComments/" + this.props.currentSelectedProduct.id;
             // const queryString = "http://localhost:5000/api/productComments/" + this.props.currentSelectedProduct.id;
             const getComment = async () => {
                 const { data } = await axios.get(queryString,
@@ -72,7 +72,7 @@ class ProductModal extends React.Component {
     }
 
     onSubmitRating() {
-        const queryString = "https://traderjoesapi-wacky-tiger-ir.mybluemix.net/api/productComments/" + this.props.currentSelectedProduct.id;
+        const queryString = process.env.REACT_APP_BACKEND_URL + "/api/productComments/" + this.props.currentSelectedProduct.id;
         // const queryString = "http://localhost:5000/api/productComments/" + this.props.currentSelectedProduct.id;
         const currentCallbackStar = this.callbackStar.current.state.currentStar;
         var rightNow = new Date();
@@ -214,7 +214,7 @@ class ProductModal extends React.Component {
                                                         </div>
                                                         <div style={{ fontWeight: 'initial' }} class="text">
                                                             {comment.commentImage
-                                                                ? (<img style={{ height: '100px' }} alt=" " src={`https://traderjoesapi-wacky-tiger-ir.mybluemix.net/${comment.commentImage}`} />)
+                                                                ? (<img style={{ height: '100px' }} alt=" " src={process.env.REACT_APP_BACKEND_URL + `/${comment.commentImage}`} />)
                                                                 : (<div />)}
                                                             <div>
                                                                 {comment.comments}
