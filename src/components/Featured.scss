@@ -1,7 +1,8 @@
 .featured {
     height: 55vh;
     position: relative;
-    font-size: 1.2rem;
+    font-size: 2rem;
+    font-weight: normal;
   
     img {
       width: 100%;
@@ -48,6 +49,7 @@
   @media screen and (max-width: 600px) {
     
     .info {
+      font-size: 1.5rem;
       // .infoText{
       //   font-size: 1rem;
         
