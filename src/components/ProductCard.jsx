@@ -97,8 +97,8 @@ class ProductCard extends React.Component {
                                         {this.props.product.RatingUser > 0 ? '/10' : ''}
                                     </div>
                                     <div className="rightRight">
+                                        {this.props.product.RatingUser > 0 ? this.props.product.RatingUser(this.props.product.RatingUser <= 1 ? ('rating') : ('ratings')) : ''}
 
-                                        ({this.props.product.RatingUser} {this.props.product.RatingUser <= 1 ? ('rating') : ('ratings')})
                                     </div>
                                 </div>
 
