@@ -12,9 +12,9 @@ const Featured = () => {
             />
             <div className="info">
                 <div style={{ textAlign: 'center' }} className="infoText">
-                    <div>Track what's new at Trader Joe's.</div ><br />
-                    <div>Save those you want to buy.</div ><br />
-                    <div>Tell people what's good.</div ><br />
+                    <div>Learn about exciting new items at your local Trader Joe's</div ><br />
+                    <div>Bookmark your favorite items.</div ><br />
+                    <div>Check-out and leave reviews for any item!</div ><br />
 
                 </div>
                 <div

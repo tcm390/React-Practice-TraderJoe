@@ -88,12 +88,13 @@ class ProductCard extends React.Component {
                         <div style={{ flex: '1' }} className="subDes">
                             <div className="leftSubDes">
                                 <div className="left">
-                                    {(Math.round((this.props.product.RatingScore / this.props.product.RatingUser * 1) * 10) / 10) * 2}
+
+                                    {this.props.product.RatingUser > 0 ? ((Math.round((this.props.product.RatingScore / this.props.product.RatingUser * 1) * 10) / 10) * 2) : ('No Review')}
 
                                 </div>
                                 <div className="right">
                                     <div className="rightLeft">
-                                        /10
+                                        {this.props.product.RatingUser > 0 ? '/10' : ''}
                                     </div>
                                     <div className="rightRight">
 
