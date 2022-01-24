@@ -144,9 +144,10 @@ class ProductModal extends React.Component {
                                     <div className="rightSubDes">
                                         <i className="star yellow big icon" />
                                         <div className="left">
-                                            {(Math.round((this.props.currentSelectedProduct.RatingScore / this.props.currentSelectedProduct.RatingUser * 1) * 10) / 10) * 2}
+                                            {this.props.currentSelectedProduct.RatingUser > 0 ? ((Math.round((this.props.currentSelectedProduct.RatingScore / this.props.currentSelectedProduct.RatingUser * 1) * 10) / 10) * 2) : ('No Review')}
+                                            {/* {(Math.round((this.props.currentSelectedProduct.RatingScore / this.props.currentSelectedProduct.RatingUser * 1) * 10) / 10) * 2} */}
                                         </div>
-                                        <div className="right">/10</div>
+                                        <div className="right">{this.props.currentSelectedProduct.RatingUser > 0 ? '/10' : ''}</div>
 
                                     </div>
                                 </div>
