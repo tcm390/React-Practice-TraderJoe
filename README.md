@@ -1,4 +1,4 @@
-# TraderJoe's Review Website
+# React Practice - TraderJoe's Review Website
 
-Demo: https://wizardly-pare-8684fe.netlify.app/
+Demo: https://lets-go-trader-joes.com/
 
